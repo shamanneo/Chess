@@ -13,6 +13,7 @@ class CPiece
             : m_x(x), m_y(y) { }
         virtual void Draw(HDC hdc, int x, int y) 
         {
+            return ; 
         }
         bool Move(int tar_x, int tar_y) ; 
         virtual bool CanMove(int cur_x, int cur_y, int tar_x, int tar_y) ;
