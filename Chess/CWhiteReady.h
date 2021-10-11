@@ -1,8 +1,5 @@
 #pragma once
 #include "CState.h"
-#include "CChessBoard.h"
-
-extern CChessBoard chess_board ;
 
 class CChessGame ;
 class CWhiteReady : public CState

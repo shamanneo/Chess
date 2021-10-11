@@ -1,5 +1,6 @@
 #pragma once
 #include "CPiece.h"
+#include "CChessBoard.h"
 
 class CState
 {
