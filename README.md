@@ -1,3 +1,3 @@
 # Chess
-Chess with C++ 
+Windows chess program with C++ 
 
