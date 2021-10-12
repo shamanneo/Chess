@@ -10,6 +10,7 @@ bool CPiece::Move(int tar_x, int tar_y)
         return false ;
     }
     chess_board.SetPieces(tar_x, tar_y, this->GetX(), this->GetY(), *this) ;
+    this->SetXY(tar_x, tar_y) ; 
     return true ;
 }
 

@@ -5,6 +5,7 @@ class CWRook : public CPiece
     private :
         const WCHAR *m_imgfile_name = L"white_rook.png" ; 
         const int m_color = 1 ;
+        bool m_can_castle = true ; 
     public :
         CWRook(int x, int y)
             : CPiece(x, y) { }
@@ -13,6 +14,10 @@ class CWRook : public CPiece
         inline virtual int GetColor() const
         {
             return m_color ;
+        }
+        inline bool CanCastling() const 
+        {
+            return m_can_castle ; 
         }
 } ;
 

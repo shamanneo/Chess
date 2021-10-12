@@ -15,6 +15,9 @@ class CWKing : public CPiece
         {
             return m_color ;
         }
+        bool KingSideCastling() ; 
+        bool QueenSideCastling() ; 
+        bool IsCheckMated() ; 
 } ;
 
 
