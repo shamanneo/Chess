@@ -18,7 +18,6 @@ CPiece *CBlackReady::Move(CPiece *prev, int x, int y)
     }
     else if (prev->Move(x, y))
     {
-        prev->SetXY(x, y) ;
         m_chess_game->SetWhiteTurnState() ;
         return nullptr ;
     }

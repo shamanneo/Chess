@@ -44,5 +44,6 @@ bool CWRook::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
         }
         i++ ;
     }
+    m_can_castle = false ; 
     return true ;
 }
