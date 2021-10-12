@@ -213,7 +213,6 @@ LRESULT CALLBACK ChessBoardWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARA
             int x = GET_X_LPARAM(lParam) / 60 ;
             int y = GET_Y_LPARAM(lParam) / 60 ;
             chess_game.Picked(x, y) ; 
-
             break ;
         }
         case WM_DESTROY:
