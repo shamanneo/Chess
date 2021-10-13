@@ -12,7 +12,7 @@ class CChessBoard
     public :
         CChessBoard() ; 
         void Reset() ;
-        void SetBoard(HWND hWnd, HDC hdc) ; 
+        void DrawBoard(HWND hWnd, HDC hdc) ;
         inline CPiece *GetPiece(int x, int y) const 
         {
             return m_chess_board[x][y] ; 

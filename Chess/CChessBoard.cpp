@@ -13,6 +13,13 @@ CChessBoard::CChessBoard()
 
 void CChessBoard::Reset()
 {
+    for (int x = 0 ; x < 8 ; x++)
+    {
+        for (int y = 0 ; y < 8 ; y++)
+        {
+            m_chess_board[x][y] = nullptr ;
+        }
+    }
     m_chess_board[0][0] = new CBRook(0, 0) ;
     m_chess_board[1][0] = new CBKnight(1, 0) ; 
     m_chess_board[2][0] = new CBBishop(2, 0) ; 
@@ -50,19 +57,18 @@ void CChessBoard::Reset()
     m_chess_board[7][6] = new CWPawn(7, 6) ;
 }
 
-void CChessBoard::SetBoard(HWND hWnd, HDC hdc)
+void CChessBoard::DrawBoard(HWND hWnd, HDC hdc)
 {
     Gdiplus::Graphics graphics(hdc) ; 
     Gdiplus::Image img(L"chessboard.png") ; 
     graphics.DrawImage(&img, 0, 0, 480, 480) ; 
-
-    for (int nX = 0 ; nX < 8 ; nX++)
+    for (int x = 0 ; x < 8 ; x++)
     {
-        for (int nY = 0 ; nY < 8 ; nY++)
+        for (int y = 0 ; y < 8 ; y++)
         {
-            if (m_chess_board[nX][nY] != nullptr)
+            if (m_chess_board[x][y] != nullptr)
             {
-                m_chess_board[nX][nY]->Draw(hdc, nX, nY) ;
+                m_chess_board[x][y]->Draw(hdc, x, y) ;
             }
         }
     }

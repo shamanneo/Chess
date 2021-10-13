@@ -4,6 +4,7 @@
 #include "CWhiteReady.h"
 #include "CBlackTurn.h"
 #include "CBlackReady.h"
+#include "CChessBoardWindow.h"
 
 class CChessGame
 {

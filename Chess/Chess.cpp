@@ -1,13 +1,5 @@
 // Chess.cpp : Defines the entry point for the application.
-#include "framework.h"
 #include "Chess.h"
-#include <Windows.h>
-#include <objidl.h> 
-#include <gdiplus.h>
-#include "CChessBoard.h"
-#include "CChessGame.h"
-#include <windowsx.h>
-
 #pragma comment (lib, "Gdiplus.lib") 
 
 #define MAX_LOADSTRING 100
@@ -63,7 +55,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             DispatchMessage(&msg);
         }
     }
-
     Gdiplus::GdiplusShutdown(gdiplustoken) ; 
 
     return (int) msg.wParam;
@@ -115,6 +106,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    const DWORD wsStyle = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX ;
    HWND main_hwnd = CreateWindowW(szWindowClass, szTitle, wsStyle, 0, 0, 600, 539, nullptr, nullptr, hInstance, nullptr) ;
    HWND chessboard_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, 480, 480, main_hwnd, nullptr, hInstance, nullptr) ; 
+   CChessBoardWindow *cb_wnd = new CChessBoardWindow ; 
+   SetWindowLongPtr(chessboard_hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(cb_wnd)) ; 
+
    my_hwnd = chessboard_hwnd ; 
 
    if (!main_hwnd)
@@ -178,54 +172,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-LRESULT CALLBACK ChessBoardWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    switch (message)
-    {
-        case WM_COMMAND:
-        {
-            int wmId = LOWORD(wParam);
-            // Parse the menu selections:
-            switch (wmId)
-            {
-            case IDM_ABOUT:
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                break;
-            case IDM_EXIT:
-                DestroyWindow(hWnd);
-                break;
-            default:
-                return DefWindowProc(hWnd, message, wParam, lParam);
-            }
-            break;
-        }
-        case WM_PAINT:
-        {
-            PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps) ;
-            chess_board.SetBoard(hWnd, hdc) ;
-            EndPaint(hWnd, &ps);
-            break;
-        }
-        case WM_LBUTTONDOWN:
-        {
-            static CChessGame chess_game ; 
-            int x = GET_X_LPARAM(lParam) / 60 ;
-            int y = GET_Y_LPARAM(lParam) / 60 ;
-            chess_game.Picked(x, y) ; 
-            break ;
-        }
-        case WM_DESTROY:
-        {
-            PostQuitMessage(0);
-            break;
-        }
-        default:
-        {
-            return DefWindowProc(hWnd, message, wParam, lParam);
-        }
-    }
-    return 0;
+    CChessBoardWindow *cb_wnd = reinterpret_cast<CChessBoardWindow *>(GetWindowLongPtr(hwnd, GWLP_USERDATA)) ;
+    return cb_wnd->ChessBoardWndProc(hwnd, message, wParam, lParam) ; 
+
 }
 
 // Message handler for about box.

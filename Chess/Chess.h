@@ -1,3 +1,10 @@
 #pragma once
-
+#include "framework.h"
 #include "resource.h"
+#include <Windows.h>
+#include <objidl.h> 
+#include <gdiplus.h>
+#include "CChessBoard.h"
+#include "CChessGame.h"
+#include "CChessBoardWindow.h"
+#include <windowsx.h>
