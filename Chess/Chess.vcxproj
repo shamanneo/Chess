@@ -148,6 +148,7 @@
     <ClInclude Include="CBQueen.h" />
     <ClInclude Include="CBRook.h" />
     <ClInclude Include="CChessBoard.h" />
+    <ClInclude Include="CChessBoardWindow.h" />
     <ClInclude Include="CChessGame.h" />
     <ClInclude Include="Chess.h" />
     <ClInclude Include="CPiece.h" />
@@ -175,6 +176,7 @@
     <ClCompile Include="CBQueen.cpp" />
     <ClCompile Include="CBRook.cpp" />
     <ClCompile Include="CChessBoard.cpp" />
+    <ClCompile Include="CChessBoardWindow.cpp" />
     <ClCompile Include="CChessGame.cpp" />
     <ClCompile Include="Chess.cpp" />
     <ClCompile Include="CPiece.cpp" />
