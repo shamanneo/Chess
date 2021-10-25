@@ -161,15 +161,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         case WM_DESTROY:
         {
-            PostQuitMessage(0);
-            break;
+            PostQuitMessage(0) ;
+            break ;
         }
         default:
         {
             return DefWindowProc(hWnd, message, wParam, lParam);
         }
     }
-    return 0;
+    return 0 ;
 }
 
 LRESULT CALLBACK ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)

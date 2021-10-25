@@ -27,70 +27,70 @@
     <ClInclude Include="Chess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CChessBoard.h">
+    <ClInclude Include="ChessBoard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CPiece.h">
+    <ClInclude Include="Piece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CBPawn.h">
+    <ClInclude Include="BPawn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CBRook.h">
+    <ClInclude Include="BRook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CBKnight.h">
+    <ClInclude Include="BKnight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CBBishop.h">
+    <ClInclude Include="BBishop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CBQueen.h">
+    <ClInclude Include="BQueen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CBKing.h">
+    <ClInclude Include="BKing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CWPawn.h">
+    <ClInclude Include="WPawn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CWRook.h">
+    <ClInclude Include="WRook.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CWKnight.h">
+    <ClInclude Include="WKnight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CWBishop.h">
+    <ClInclude Include="WBishop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CWQueen.h">
+    <ClInclude Include="WQueen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CWKing.h">
+    <ClInclude Include="WKing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CState.h">
+    <ClInclude Include="State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CChessGame.h">
+    <ClInclude Include="ChessGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CWhiteTurn.h">
+    <ClInclude Include="WhiteTurn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CWhiteReady.h">
+    <ClInclude Include="WhiteReady.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CBlackTurn.h">
+    <ClInclude Include="BlackTurn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CBlackReady.h">
+    <ClInclude Include="BlackReady.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CChessBoardWindow.h">
+    <ClInclude Include="ChessBoardWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -98,67 +98,67 @@
     <ClCompile Include="Chess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CChessBoard.cpp">
+    <ClCompile Include="ChessBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CPiece.cpp">
+    <ClCompile Include="Piece.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CBPawn.cpp">
+    <ClCompile Include="BPawn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CBRook.cpp">
+    <ClCompile Include="BRook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CBKnight.cpp">
+    <ClCompile Include="BKnight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CBBishop.cpp">
+    <ClCompile Include="BBishop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CBQueen.cpp">
+    <ClCompile Include="BQueen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CBKing.cpp">
+    <ClCompile Include="BKing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CWPawn.cpp">
+    <ClCompile Include="WPawn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CWRook.cpp">
+    <ClCompile Include="WRook.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CWKnight.cpp">
+    <ClCompile Include="WKnight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CWBishop.cpp">
+    <ClCompile Include="WBishop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CWQueen.cpp">
+    <ClCompile Include="WQueen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CWKing.cpp">
+    <ClCompile Include="WKing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CState.cpp">
+    <ClCompile Include="State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CChessGame.cpp">
+    <ClCompile Include="ChessGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CWhiteTurn.cpp">
+    <ClCompile Include="WhiteTurn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CWhiteReady.cpp">
+    <ClCompile Include="WhiteReady.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CBlackTurn.cpp">
+    <ClCompile Include="BlackTurn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CBlackReady.cpp">
+    <ClCompile Include="BlackReady.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CChessBoardWindow.cpp">
+    <ClCompile Include="ChessBoardWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

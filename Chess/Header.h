@@ -1,17 +1,17 @@
 #pragma once
 
-#include "CBPawn.h"
-#include "CBRook.h"
-#include "CBKnight.h"
-#include "CBBishop.h"
-#include "CBQueen.h"
-#include "CBKing.h"
-#include "CWpawn.h"
-#include "CWRook.h"
-#include "CWknight.h"
-#include "CWBishop.h"
-#include "CWQueen.h"
-#include "CWKing.h"
+#include "BPawn.h"
+#include "BRook.h"
+#include "BKnight.h"
+#include "BBishop.h"
+#include "BQueen.h"
+#include "BKing.h"
+#include "Wpawn.h"
+#include "WRook.h"
+#include "Wknight.h"
+#include "WBishop.h"
+#include "WQueen.h"
+#include "WKing.h"
 
 
 

@@ -4,7 +4,7 @@
 #include <Windows.h>
 #include <objidl.h> 
 #include <gdiplus.h>
-#include "CChessBoard.h"
-#include "CChessGame.h"
-#include "CChessBoardWindow.h"
+#include "ChessBoard.h"
+#include "ChessGame.h"
+#include "ChessBoardWindow.h"
 #include <windowsx.h>
