@@ -176,7 +176,6 @@ LRESULT CALLBACK ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARA
 {
     CChessBoardWindow *cb_wnd = reinterpret_cast<CChessBoardWindow *>(GetWindowLongPtr(hwnd, GWLP_USERDATA)) ;
     return cb_wnd->ChessBoardWndProc(hwnd, message, wParam, lParam) ; 
-
 }
 
 // Message handler for about box.

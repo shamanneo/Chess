@@ -9,7 +9,7 @@ bool CWhiteTurn::IsPicked(CPiece *prev, CPiece *cur)
     {
         return false ;
     }
-    else if (cur != nullptr && cur->GetColor() == 0)
+    else if (cur != nullptr && cur->GetColor() == 0) // is black? 
     {
         return false ;
     }
@@ -26,7 +26,6 @@ bool CWhiteTurn::IsPicked(CPiece *prev, CPiece *cur)
 
 CPiece *CWhiteTurn::Pick(CPiece *prev, int x, int y)
 {
-    
     CPiece *cur = chess_board.GetPiece(x, y) ;
     if (IsPicked(prev, cur))
     {

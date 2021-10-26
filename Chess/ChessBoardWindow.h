@@ -11,14 +11,7 @@ class CChessBoardWindow
         void OnLButtonDown(LPARAM lParam) ;
         void OnDestory() ;
     public :
-        CChessBoardWindow()
-        {
-            m_cb = new CChessBoard ; 
-        }
-        inline CChessBoard *GetChessBoard() const  
-        {
-            return m_cb ;
-        }
+        CChessBoardWindow() ; 
         LRESULT ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) ;
         
 } ;

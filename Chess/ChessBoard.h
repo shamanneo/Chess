@@ -8,7 +8,7 @@
 class CChessBoard
 {
     private :
-        CPiece *m_chess_board[8][8] ; 
+        CPiece *m_chess_board[8][8] ; // chess logic. 
     public :
         CChessBoard() ; 
         void Reset() ;

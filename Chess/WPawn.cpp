@@ -3,11 +3,15 @@
 
 extern CChessBoard chess_board ;
 
-void CWPawn::Draw(HDC hdc, int x, int y)
+CWPawn::CWPawn(int x, int y)
+    : CPiece(x, y), m_img(m_imgfile_name) 
 {
-    Gdiplus::Graphics graphics(hdc) ;
-    Gdiplus::Image img(m_imgfile_name) ;
-    graphics.DrawImage(&img, x * 60, y * 60, 60, 60) ;
+    m_is_moved = false ; 
+}
+
+void CWPawn::Draw(const int size, Gdiplus::Graphics graphics, int x, int y)
+{
+    graphics.DrawImage(&m_img, x * size, y * size, size, size) ;
 }
 
 bool CWPawn::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
@@ -29,18 +33,23 @@ bool CWPawn::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     }
     else if (x == 0 && y == 1)
     {
-        m_is_moved_ = true ;
+        m_is_moved = true ;
         return true ;
     }
-    else if (x == 0 && y == 2 && m_is_moved_ == false)
+    else if (x == 0 && y == 2 && m_is_moved == false)
     {
         CPiece *piece = chess_board.GetPiece(cur_x, cur_y - 1) ;
         if (piece != nullptr)
         {
             return false ; 
         }
-        m_is_moved_ = true ;
+        m_is_moved = true ;
         return true ;
     }
     return false ;
+}
+
+inline int CWPawn::GetColor() const
+{
+    return m_color ;
 }

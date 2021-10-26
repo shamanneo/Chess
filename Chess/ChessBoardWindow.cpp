@@ -1,5 +1,11 @@
 #include "ChessBoardWindow.h"
 
+
+CChessBoardWindow::CChessBoardWindow()
+{
+    m_cb = new CChessBoard ;
+}
+
 LRESULT CChessBoardWindow::ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)

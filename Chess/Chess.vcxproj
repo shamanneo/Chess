@@ -151,6 +151,7 @@
     <ClInclude Include="ChessBoardWindow.h" />
     <ClInclude Include="ChessGame.h" />
     <ClInclude Include="Chess.h" />
+    <ClInclude Include="FaintChessBoard.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="WBishop.h" />
@@ -179,6 +180,7 @@
     <ClCompile Include="ChessBoardWindow.cpp" />
     <ClCompile Include="ChessGame.cpp" />
     <ClCompile Include="Chess.cpp" />
+    <ClCompile Include="FaintChessBoard.cpp" />
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="WBishop.cpp" />
