@@ -1,8 +1,8 @@
-#include "FaintChessBoard.h"
+#include "PaintChessBoard.h"
 #include "Piece.h"
 #include "ChessBoard.h"
 
-CFaintChessBoard::CFaintChessBoard(HWND hwnd, CChessBoard *chessboard)
+CPaintChessBoard::CPaintChessBoard(HWND hwnd, CChessBoard *chessboard)
     : m_graphics(hwnd) 
 {
     m_chessboard = chessboard ; 
@@ -10,12 +10,12 @@ CFaintChessBoard::CFaintChessBoard(HWND hwnd, CChessBoard *chessboard)
     m_hdc = GetDC(hwnd) ; 
 }
 
-CFaintChessBoard::~CFaintChessBoard()
+CPaintChessBoard::~CPaintChessBoard()
 {
     ReleaseDC(m_hwnd, m_hdc) ; 
 }
 
-void CFaintChessBoard::DrawBoard()
+void CPaintChessBoard::DrawBoard()
 {
     CPiece* piece = nullptr ; 
     Gdiplus::Image img(L"chessboard.png") ;
@@ -34,7 +34,7 @@ void CFaintChessBoard::DrawBoard()
     }
 }
 
-void CFaintChessBoard::DrawSmallRect(int x, int y)
+void CPaintChessBoard::DrawSmallRect(int x, int y)
 {
     if ((x + y) % 2 == 0)
     {
@@ -48,13 +48,13 @@ void CFaintChessBoard::DrawSmallRect(int x, int y)
     }
 }
 
-void CFaintChessBoard::MarkPos(int x, int y)
+void CPaintChessBoard::MarkPos(int x, int y)
 {
     Gdiplus::SolidBrush brush(Gdiplus::Color(100, 0, 100, 0)) ;
     m_graphics.FillRectangle(&brush, x * m_size + 1, y * m_size + 1, m_size, m_size) ;
 }
 
-void CFaintChessBoard::ErasePos(int x, int y)
+void CPaintChessBoard::ErasePos(int x, int y)
 {
     DrawSmallRect(x, y) ;
     CPiece* piece = m_chessboard->GetPiece(x, y) ;

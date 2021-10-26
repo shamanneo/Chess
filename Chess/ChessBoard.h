@@ -4,13 +4,13 @@
 #include <objidl.h> 
 #include <gdiplus.h>
 #include "Piece.h"
-#include "FaintChessBoard.h"
+#include "PaintChessBoard.h"
 
 class CChessBoard
 {
     private :
         CPiece *m_chess_board[8][8] ; // chess logic. 
-        CFaintChessBoard *m_faint ; 
+        CPaintChessBoard *m_faint ; 
     public :
         CChessBoard() ; 
         void Clear() ; 

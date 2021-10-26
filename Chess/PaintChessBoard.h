@@ -4,7 +4,7 @@
 #include <gdiplus.h>
 
 class CChessBoard ; 
-class CFaintChessBoard
+class CPaintChessBoard
 {
     private :
         HWND m_hwnd ; 
@@ -14,8 +14,8 @@ class CFaintChessBoard
         const int m_size = 60 ; 
 
     public :
-        CFaintChessBoard(HWND hwnd, CChessBoard *chessboard) ; 
-        ~CFaintChessBoard() ; 
+        CPaintChessBoard(HWND hwnd, CChessBoard *chessboard) ;
+        ~CPaintChessBoard() ;
         void DrawBoard() ; 
         void DrawSmallRect(int x, int y) ; 
         void MarkPos(int x, int y) ; 

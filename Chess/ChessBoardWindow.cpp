@@ -3,7 +3,7 @@
 CChessBoardWindow::CChessBoardWindow(HWND hwnd)
 {
     m_cb = new CChessBoard ;
-    m_fcb = new CFaintChessBoard(hwnd, m_cb) ; 
+    m_fcb = new CPaintChessBoard(hwnd, m_cb) ; 
 }
 
 LRESULT CChessBoardWindow::ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
