@@ -1,9 +1,11 @@
 #include "FaintChessBoard.h"
 #include "Piece.h"
+#include "ChessBoard.h"
 
-CFaintChessBoard::CFaintChessBoard(HWND hwnd)
+CFaintChessBoard::CFaintChessBoard(HWND hwnd, CChessBoard *chessboard)
     : m_graphics(hwnd) 
 {
+    m_chessboard = chessboard ; 
     m_hwnd = hwnd ; 
     m_hdc = GetDC(hwnd) ; 
 }
@@ -15,8 +17,21 @@ CFaintChessBoard::~CFaintChessBoard()
 
 void CFaintChessBoard::DrawBoard()
 {
+    CPiece* piece = nullptr ; 
     Gdiplus::Image img(L"chessboard.png") ;
     m_graphics.DrawImage(&img, 0, 0, m_size * 8, m_size * 8) ;
+
+    for (int x = 0 ; x < 8 ; x++)
+    {
+        for (int y = 0 ; y < 8 ; y++)
+        {
+            piece = m_chessboard->GetPiece(x, y) ; 
+            if (piece != nullptr)
+            {
+                // piece->Draw() ; 
+            }
+        }
+    }
 }
 
 void CFaintChessBoard::DrawSmallRect(int x, int y)
@@ -42,6 +57,6 @@ void CFaintChessBoard::MarkPos(int x, int y)
 void CFaintChessBoard::ErasePos(int x, int y)
 {
     DrawSmallRect(x, y) ;
-    // CPiece* piece = GetPiece(x, y) ; 
+    CPiece* piece = m_chessboard->GetPiece(x, y) ;
     // piece->Draw(m_size, m_graphics, x, y) ;
 } 

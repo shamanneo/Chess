@@ -8,10 +8,11 @@ extern HWND my_hwnd ;
 
 CChessBoard::CChessBoard()
 {
-    Reset() ;
+    Clear() ; 
+    SetPieces() ; 
 }
 
-void CChessBoard::Reset()
+void CChessBoard::Clear()
 {
     for (int x = 0 ; x < 8 ; x++)
     {
@@ -20,9 +21,13 @@ void CChessBoard::Reset()
             m_chess_board[x][y] = nullptr ;
         }
     }
+}
+
+void CChessBoard::SetPieces()
+{
     m_chess_board[0][0] = new CBRook(0, 0) ;
-    m_chess_board[1][0] = new CBKnight(1, 0) ; 
-    m_chess_board[2][0] = new CBBishop(2, 0) ; 
+    m_chess_board[1][0] = new CBKnight(1, 0) ;
+    m_chess_board[2][0] = new CBBishop(2, 0) ;
     m_chess_board[3][0] = new CBQueen(3, 0) ;
     m_chess_board[4][0] = new CBKing(4, 0) ;
     m_chess_board[5][0] = new CBBishop(5, 0) ;
@@ -31,10 +36,10 @@ void CChessBoard::Reset()
 
     m_chess_board[0][1] = new CBPawn(0, 1) ;
     m_chess_board[1][1] = new CBPawn(1, 1) ;
-    m_chess_board[2][1] = new CBPawn(2 ,1) ; 
-    m_chess_board[3][1] = new CBPawn(3, 1) ; 
-    m_chess_board[4][1] = new CBPawn(4, 1) ; 
-    m_chess_board[5][1] = new CBPawn(5, 1) ; 
+    m_chess_board[2][1] = new CBPawn(2, 1) ;
+    m_chess_board[3][1] = new CBPawn(3, 1) ;
+    m_chess_board[4][1] = new CBPawn(4, 1) ;
+    m_chess_board[5][1] = new CBPawn(5, 1) ;
     m_chess_board[6][1] = new CBPawn(6, 1) ;
     m_chess_board[7][1] = new CBPawn(7, 1) ;
 
@@ -42,7 +47,7 @@ void CChessBoard::Reset()
     m_chess_board[1][7] = new CWKnight(1, 7) ;
     m_chess_board[2][7] = new CWBishop(2, 7) ;
     m_chess_board[3][7] = new CWQueen(3, 7) ;
-    m_chess_board[4][7] = new CWKing(4, 7) ; 
+    m_chess_board[4][7] = new CWKing(4, 7) ;
     m_chess_board[5][7] = new CWBishop(5, 7) ;
     m_chess_board[6][7] = new CWKnight(6, 7) ;
     m_chess_board[7][7] = new CWRook(7, 7) ;
@@ -72,6 +77,11 @@ void CChessBoard::DrawBoard(HWND hWnd, HDC hdc)
             }
         }
     }
+}
+
+inline CPiece *CChessBoard::GetPiece(int x, int y) const
+{
+    return m_chess_board[x][y] ;
 }
 
 void CChessBoard::SetPieces(int tar_x, int tar_y, int cur_x, int cur_y, CPiece &piece)

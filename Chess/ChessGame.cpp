@@ -12,10 +12,30 @@ CChessGame::CChessGame()
 
 CChessGame::~CChessGame()
 {
-    delete m_whiteturn;
-    delete m_whiteready;
-    delete m_blackturn;
-    delete m_blackready;
+    delete m_whiteturn ; 
+    delete m_whiteready ;
+    delete m_blackturn ;
+    delete m_blackready ;
+}
+
+void CChessGame::WhiteSelect()
+{
+    
+}
+
+void CChessGame::WhiteMove()
+{
+
+}
+
+void CChessGame::BlackSelect()
+{
+
+}
+
+void CChessGame::BlackMove()
+{
+
 }
 
 void CChessGame::SetWhiteTurnState()
@@ -36,6 +56,26 @@ void CChessGame::SetBlackTurnState()
 void CChessGame::SetBlackReadyState()
 {
     m_state = m_blackready ;
+}
+
+CState *CChessGame::GetWhiteTurnState() const
+{
+    return m_whiteturn ; 
+}
+
+CState *CChessGame::GetWhiteReadyState() const
+{
+    return m_whiteready ; 
+}
+
+CState *CChessGame::GetBlackTurnState() const
+{
+    return m_blackturn ; 
+}
+
+CState *CChessGame::GetBlackReadyState() const
+{
+    return m_blackready ; 
 }
 
 void CChessGame::Picked(int x, int y)

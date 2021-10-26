@@ -18,10 +18,16 @@ class CChessGame
     public :
         CChessGame() ; 
         ~CChessGame() ; 
+
         void WhiteSelect() ; 
         void WhiteMove() ; 
         void BlackSelect() ; 
         void BlackMove() ; 
+
+        CState *GetWhiteTurnState() const ;
+        CState *GetWhiteReadyState() const ; 
+        CState *GetBlackTurnState() const ; 
+        CState *GetBlackReadyState() const ; 
 
         void SetWhiteTurnState() ; 
         void SetWhiteReadyState() ;

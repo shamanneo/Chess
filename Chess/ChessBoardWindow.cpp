@@ -1,9 +1,9 @@
 #include "ChessBoardWindow.h"
 
-
-CChessBoardWindow::CChessBoardWindow()
+CChessBoardWindow::CChessBoardWindow(HWND hwnd)
 {
     m_cb = new CChessBoard ;
+    m_fcb = new CFaintChessBoard(hwnd, m_cb) ; 
 }
 
 LRESULT CChessBoardWindow::ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -37,7 +37,7 @@ void CChessBoardWindow::OnPaint(HWND hwnd)
 {
     PAINTSTRUCT ps;
     HDC hdc = BeginPaint(hwnd, &ps) ;
-    m_cb->DrawBoard(hwnd, hdc) ;
+    m_fcb->DrawBoard() ;
     EndPaint(hwnd, &ps);
 }
 

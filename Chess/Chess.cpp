@@ -32,8 +32,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     ULONG_PTR gdiplustoken ; 
     Gdiplus::GdiplusStartupInput gdiplusStartupInput ;
     Gdiplus::GdiplusStartup(&gdiplustoken, &gdiplusStartupInput, nullptr) ;
-    LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-    LoadStringW(hInstance, IDC_CHESS, szWindowClass, MAX_LOADSTRING);
+    LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING) ;
+    LoadStringW(hInstance, IDC_CHESS, szWindowClass, MAX_LOADSTRING) ;
 
     MyRegisterClass(hInstance);
     MyRegisterChessBoardClass(hInstance) ; 
@@ -106,7 +106,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    const DWORD wsStyle = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX ;
    HWND main_hwnd = CreateWindowW(szWindowClass, szTitle, wsStyle, 0, 0, 600, 539, nullptr, nullptr, hInstance, nullptr) ;
    HWND chessboard_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, 480, 480, main_hwnd, nullptr, hInstance, nullptr) ; 
-   CChessBoardWindow *cb_wnd = new CChessBoardWindow ; 
+   CChessBoardWindow *cb_wnd = new CChessBoardWindow(chessboard_hwnd) ; 
    SetWindowLongPtr(chessboard_hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(cb_wnd)) ; 
 
    my_hwnd = chessboard_hwnd ; 
