@@ -43,10 +43,10 @@ void CChessBoardWindow::OnPaint(HWND hwnd)
 
 void CChessBoardWindow::OnLButtonDown(LPARAM lParam)
 {
-    static CChessGame chess_game ;
+    static CChessGame chess_game(m_cb) ;
     int x = GET_X_LPARAM(lParam) / 60 ;
     int y = GET_Y_LPARAM(lParam) / 60 ;
-    chess_game.Picked(x, y) ;
+    chess_game.GameState(x, y) ;
 }
 
 void CChessBoardWindow::OnDestory()

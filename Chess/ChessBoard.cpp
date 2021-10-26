@@ -1,15 +1,10 @@
-#include "framework.h"
-#include "Chess.h"
 #include "ChessBoard.h"
 #include "Header.h"
-#pragma comment (lib, "Gdiplus.lib") 
-
-extern HWND my_hwnd ;
 
 CChessBoard::CChessBoard()
 {
     Clear() ; 
-    SetPieces() ; 
+    Reset() ;
 }
 
 void CChessBoard::Clear()
@@ -23,7 +18,7 @@ void CChessBoard::Clear()
     }
 }
 
-void CChessBoard::SetPieces()
+void CChessBoard::Reset()
 {
     m_chess_board[0][0] = new CBRook(0, 0) ;
     m_chess_board[1][0] = new CBKnight(1, 0) ;
@@ -62,23 +57,6 @@ void CChessBoard::SetPieces()
     m_chess_board[7][6] = new CWPawn(7, 6) ;
 }
 
-void CChessBoard::DrawBoard(HWND hWnd, HDC hdc)
-{
-    Gdiplus::Graphics graphics(hdc) ; 
-    Gdiplus::Image img(L"chessboard.png") ; 
-    graphics.DrawImage(&img, 0, 0, 480, 480) ; 
-    for (int x = 0 ; x < 8 ; x++)
-    {
-        for (int y = 0 ; y < 8 ; y++)
-        {
-            if (m_chess_board[x][y] != nullptr)
-            {
-                m_chess_board[x][y]->Draw(hdc, x, y) ;
-            }
-        }
-    }
-}
-
 inline CPiece *CChessBoard::GetPiece(int x, int y) const
 {
     return m_chess_board[x][y] ;
@@ -86,10 +64,9 @@ inline CPiece *CChessBoard::GetPiece(int x, int y) const
 
 void CChessBoard::SetPieces(int tar_x, int tar_y, int cur_x, int cur_y, CPiece &piece)
 {
-    HDC hdc = GetDC(my_hwnd) ;
-    DrawSmallRect(hdc, cur_x, cur_y) ;
-    DrawSmallRect(hdc, tar_x, tar_y) ;
-    m_chess_board[cur_x][cur_y]->Draw(hdc, tar_x, tar_y) ;
+    m_paint_board->DrawSmallRect(cur_x, cur_y) ;
+    m_paint_board->DrawSmallRect(tar_x, tar_y) ;
+    // m_chess_board[cur_x][cur_y]->Draw(tar_x, tar_y) ;
     if (m_chess_board[tar_x][tar_y] == nullptr) // just move.
     {
         m_chess_board[tar_x][tar_y] = &piece ;
@@ -101,41 +78,11 @@ void CChessBoard::SetPieces(int tar_x, int tar_y, int cur_x, int cur_y, CPiece &
         delete temp ; 
     }
     m_chess_board[cur_x][cur_y] = nullptr ;
-    ReleaseDC(my_hwnd, hdc) ;
 }
 
-void CChessBoard::DrawSmallRect(HDC hdc, int x, int y) const
+CPaintChessBoard *CChessBoard::GetPaintBoard() const 
 {
-    Gdiplus::Graphics graphics(hdc) ;
-    if ((x + y) % 2 == 0)
-    {
-        Gdiplus::Image img(L"white_rect.png") ;
-        graphics.DrawImage(&img, x * 60 + 1, y * 60 + 1, 60, 60) ;
-    }
-    else
-    {
-        Gdiplus::Image img(L"black_rect.png") ;
-        graphics.DrawImage(&img, x * 60 + 1, y * 60 + 1, 60, 60) ;
-    }
-}
-
-void CChessBoard::DrawCurrentPos(int x, int y) const
-{
-    HDC hdc = GetDC(my_hwnd) ; 
-    Gdiplus::Graphics graphics(hdc) ; 
-    Gdiplus::SolidBrush brush(Gdiplus::Color(100, 0, 100, 0)) ; 
-    graphics.FillRectangle(&brush, x * 60 + 1, y * 60 + 1, 60, 60) ; 
-    ReleaseDC(my_hwnd, hdc) ; 
-}
-
-void CChessBoard::ErasePrevPos(int x, int y) const
-{
-    HDC hdc = GetDC(my_hwnd) ;
-    Gdiplus::Graphics graphics(hdc) ;
-    DrawSmallRect(hdc, x, y) ; 
-    CPiece *piece = GetPiece(x, y) ; 
-    piece->Draw(hdc, x, y) ; 
-    ReleaseDC(my_hwnd, hdc) ;
+    return m_paint_board ; 
 }
 
 

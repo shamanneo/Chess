@@ -1,25 +1,41 @@
 #include "BlackReady.h"
 #include "ChessGame.h"
 
-extern CChessBoard chess_board ;
-
-CPiece *CBlackReady::Move(CPiece *prev, int x, int y)
+CBlackReady::CBlackReady(CChessGame *chess_game, CChessBoard *chess_board)
 {
-    CPiece *cur = chess_board.GetPiece(x, y) ;
+    m_chess_game = chess_game ; 
+    m_chess_board = chess_board ; 
+}
+
+void CBlackReady::WhiteSelect(int x, int y)
+{
+    return ;
+}
+
+void CBlackReady::WhiteMove(int x, int y)
+{
+    return ; 
+}
+
+void CBlackReady::BlackSelect(int x, int y)
+{
+    return ; 
+}
+
+void CBlackReady::BlackMove(int x, int y)
+{
+    CPiece *prev = m_chess_game->GetPrevPiece() ;
+    CPiece *cur = m_chess_board->GetPiece(x, y) ;
     if (prev == cur)
     {
-        return cur ; 
+        return ;
     }
-    else if ((cur != nullptr) && (prev->GetColor() == 0) && (cur->GetColor() == 0))
+    else if ((cur != nullptr) && (prev->GetColor() == 1) && (cur->GetColor() == 1))
     {
-        m_chess_game->SetBlackTurnState() ;
-        m_chess_game->Picked(x, y) ;
-        return cur ; 
+        m_chess_game->SetState(m_chess_game->GetBlackTurnState()) ;
     }
     else if (prev->Move(x, y))
     {
-        m_chess_game->SetWhiteTurnState() ;
-        return nullptr ;
+        m_chess_game->SetState(m_chess_game->GetBlackReadyState()) ;
     }
-    return prev ;
 }

@@ -1,9 +1,13 @@
 #include "WhiteTurn.h"
 #include "ChessGame.h"
 
-extern CChessBoard chess_board ;
+CWhiteTurn::CWhiteTurn(CChessGame *chess_game, CChessBoard *chess_board)
+{
+    m_chess_game = chess_game ;
+    m_chess_board = chess_board ; 
+}
 
-bool CWhiteTurn::IsPicked(CPiece *prev, CPiece *cur)
+bool CWhiteTurn::CanPicked(CPiece *prev, CPiece *cur)
 {
     if (prev == cur)
     {
@@ -17,23 +21,34 @@ bool CWhiteTurn::IsPicked(CPiece *prev, CPiece *cur)
     {
         if (prev != nullptr)
         {
-            chess_board.ErasePrevPos(prev->GetX(), prev->GetY()) ;
+            m_chess_board->GetPaintBoard()->ErasePos(prev->GetX(), prev->GetY()) ;
         }
-        chess_board.DrawCurrentPos(cur->GetX(), cur->GetY()) ;
+        m_chess_board->GetPaintBoard()->MarkPos(cur->GetX(), cur->GetY()) ;
         return true ;
     }
 }
 
-CPiece *CWhiteTurn::Pick(CPiece *prev, int x, int y)
+void CWhiteTurn::WhiteSelect(int x, int y)
 {
-    CPiece *cur = chess_board.GetPiece(x, y) ;
-    if (IsPicked(prev, cur))
+    CPiece *prev = m_chess_game->GetPrevPiece() ; 
+    CPiece *cur = m_chess_board->GetPiece(x, y) ; 
+    if (CanPicked(prev, cur) == true)
     {
-        m_chess_game->SetWhiteReadyState() ; 
-        return cur ;
+        m_chess_game->SetState(m_chess_game->GetWhiteReadyState()) ;
     }
-    else
-    {
-        return nullptr ; 
-    }
+}
+
+void CWhiteTurn::WhiteMove(int x, int y)
+{
+    return ; 
+}
+
+void CWhiteTurn::BlackSelect(int x, int y)
+{
+    return ;
+}
+
+void CWhiteTurn::BlackMove(int x, int y)
+{
+    return ; 
 }

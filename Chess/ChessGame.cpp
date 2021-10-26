@@ -1,11 +1,11 @@
 #include "ChessGame.h"
 
-CChessGame::CChessGame()
+CChessGame::CChessGame(CChessBoard *chess_board)
 {
-    m_whiteturn = new CWhiteTurn(this) ;
-    m_whiteready = new CWhiteReady(this) ;
-    m_blackturn = new CBlackTurn(this) ;
-    m_blackready = new CBlackReady(this) ;
+    m_whiteturn = new CWhiteTurn(this, chess_board) ;
+    m_whiteready = new CWhiteReady(this, chess_board) ;
+    m_blackturn = new CBlackTurn(this, chess_board) ;
+    m_blackready = new CBlackReady(this, chess_board) ;
     m_state = m_whiteturn ;
     m_prev = nullptr ;
 }
@@ -18,82 +18,60 @@ CChessGame::~CChessGame()
     delete m_blackready ;
 }
 
-void CChessGame::WhiteSelect()
+void CChessGame::WhiteSelect(int x, int y)
 {
-    
+    m_state->WhiteSelect(x, y) ; 
 }
 
-void CChessGame::WhiteMove()
+void CChessGame::WhiteMove(int x, int y)
 {
-
+    m_state->WhiteMove(x, y) ; 
 }
 
-void CChessGame::BlackSelect()
+void CChessGame::BlackSelect(int x, int y)
 {
-
+    m_state->BlackSelect(x, y) ; 
 }
 
-void CChessGame::BlackMove()
+void CChessGame::BlackMove(int x, int y)
 {
-
+    m_blackready->BlackMove(x, y) ; 
 }
 
-void CChessGame::SetWhiteTurnState()
+CState *CChessGame::GetWhiteTurnState()
 {
-    m_state = m_whiteturn ;
+    return m_whiteturn ;
 }
 
-void CChessGame::SetWhiteReadyState()
+CState *CChessGame::GetWhiteReadyState()
 {
-    m_state = m_whiteready ;
+    return m_whiteready ;
 }
 
-void CChessGame::SetBlackTurnState()
+CState *CChessGame::GetBlackTurnState()
 {
-    m_state = m_blackturn ;
+    return m_blackturn ;
 }
 
-void CChessGame::SetBlackReadyState()
+CState *CChessGame::GetBlackReadyState()
 {
-    m_state = m_blackready ;
+    return m_blackready ;
 }
 
-CState *CChessGame::GetWhiteTurnState() const
+void CChessGame::SetState(CState *state)
 {
-    return m_whiteturn ; 
+    m_state = state ; 
 }
 
-CState *CChessGame::GetWhiteReadyState() const
+void CChessGame::GameState(int x, int y)
 {
-    return m_whiteready ; 
+    WhiteSelect(x, y) ; 
+    WhiteMove(x, y) ; 
+    BlackSelect(x, y) ; 
+    BlackMove(x, y) ; 
 }
 
-CState *CChessGame::GetBlackTurnState() const
+CPiece *CChessGame::GetPrevPiece() const
 {
-    return m_blackturn ; 
-}
-
-CState *CChessGame::GetBlackReadyState() const
-{
-    return m_blackready ; 
-}
-
-void CChessGame::Picked(int x, int y)
-{
-    if (m_state == m_whiteturn)
-    {
-        m_prev = m_state->Pick(m_prev, x, y) ;
-    }
-    else if (m_state == m_whiteready)
-    {
-        m_prev = m_state->Move(m_prev, x, y) ;
-    }
-    else if (m_state == m_blackturn)
-    {
-        m_prev = m_state->Pick(m_prev, x, y) ;
-    }
-    else if (m_state == m_blackready)
-    {
-        m_prev = m_state->Move(m_prev, x, y) ;
-    }
+    return m_prev ; 
 }

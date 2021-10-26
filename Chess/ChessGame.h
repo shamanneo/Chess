@@ -16,23 +16,18 @@ class CChessGame
         CState *m_state ;
         CPiece *m_prev ; 
     public :
-        CChessGame() ; 
+        CChessGame(CChessBoard *chess_board) ; 
         ~CChessGame() ; 
-
-        void WhiteSelect() ; 
-        void WhiteMove() ; 
-        void BlackSelect() ; 
-        void BlackMove() ; 
-
-        CState *GetWhiteTurnState() const ;
-        CState *GetWhiteReadyState() const ; 
-        CState *GetBlackTurnState() const ; 
-        CState *GetBlackReadyState() const ; 
-
-        void SetWhiteTurnState() ; 
-        void SetWhiteReadyState() ;
-        void SetBlackTurnState() ; 
-        void SetBlackReadyState() ; 
-        void Picked(int x, int y) ;
+        void WhiteSelect(int x, int y) ;
+        void WhiteMove(int x, int y) ;
+        void BlackSelect(int x, int y) ;
+        void BlackMove(int x, int y) ;
+        CState *GetWhiteTurnState() ;
+        CState *GetWhiteReadyState() ;
+        CState *GetBlackTurnState() ;
+        CState *GetBlackReadyState() ;
+        void SetState(CState *state) ; 
+        void GameState(int x, int y) ; 
+        CPiece *GetPrevPiece() const ; 
 } ;
 

@@ -12,7 +12,6 @@ class CPaintChessBoard
         Gdiplus::Graphics m_graphics ;  
         CChessBoard *m_chessboard ; 
         const int m_size = 60 ; 
-
     public :
         CPaintChessBoard(HWND hwnd, CChessBoard *chessboard) ;
         ~CPaintChessBoard() ;

@@ -10,16 +10,13 @@ class CChessBoard
 {
     private :
         CPiece *m_chess_board[8][8] ; // chess logic. 
-        CPaintChessBoard *m_faint ; 
+        CPaintChessBoard *m_paint_board ; 
     public :
         CChessBoard() ; 
         void Clear() ; 
-        void SetPieces() ;
-        void DrawBoard(HWND hWnd, HDC hdc) ;
+        void Reset() ;
         inline CPiece *GetPiece(int x, int y) const ;
         void SetPieces(int tar_x, int tar_y, int cur_x, int cur_y, CPiece &piece) ; 
-        void DrawSmallRect(HDC hdc, int x, int y) const ;
-        void DrawCurrentPos(int x, int y) const ;
-        void ErasePrevPos(int x, int y) const ; 
+        CPaintChessBoard *GetPaintBoard() const ; 
 } ;
 
