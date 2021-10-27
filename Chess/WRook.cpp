@@ -7,9 +7,9 @@ CWRook::CWRook(int x, int y, CChessBoard *chess_board)
     m_can_castle = true ;
 }
 
-void CWRook::Draw(const int size, Gdiplus::Graphics graphics, int x, int y)
+void CWRook::Draw(const int size, Gdiplus::Graphics *graphics, int x, int y)
 {
-    graphics.DrawImage(&m_img, x * size, y * size, size, size) ;
+    graphics->DrawImage(&m_img, x * size, y * size, size, size) ;
 }
 
 bool CWRook::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)

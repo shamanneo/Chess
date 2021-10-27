@@ -16,7 +16,7 @@ CPaintChessBoard::~CPaintChessBoard()
 
 void CPaintChessBoard::DrawBoard()
 {
-    CPiece* piece = nullptr ; 
+    CPiece *piece = nullptr ; 
     Gdiplus::Image img(L"chessboard.png") ;
     m_graphics.DrawImage(&img, 0, 0, m_size * 8, m_size * 8) ;
 
@@ -27,7 +27,7 @@ void CPaintChessBoard::DrawBoard()
             piece = m_chessboard->GetPiece(x, y) ; 
             if (piece != nullptr)
             {
-                //piece->Draw(m_size, m_graphics, x, y) ; 
+                piece->Draw(m_size, &m_graphics, x, y) ; 
             }
         }
     }
@@ -57,5 +57,5 @@ void CPaintChessBoard::ErasePos(int x, int y)
 {
     DrawSmallRect(x, y) ;
     CPiece *piece = m_chessboard->GetPiece(x, y) ;
-    //piece->Draw(m_size, m_graphics, x, y) ;
+    piece->Draw(m_size, &m_graphics, x, y) ;
 } 

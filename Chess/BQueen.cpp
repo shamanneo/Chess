@@ -7,9 +7,9 @@ CBQueen::CBQueen(int x, int y, CChessBoard *chess_board)
     
 }
 
-void CBQueen::Draw(const int size, Gdiplus::Graphics graphics, int x, int y)
+void CBQueen::Draw(const int size, Gdiplus::Graphics *graphics, int x, int y)
 {
-    graphics.DrawImage(&m_img, x * size, y * size, size, size) ;
+    graphics->DrawImage(&m_img, x * size, y * size, size, size) ;
 }
 
 bool CBQueen::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)

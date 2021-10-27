@@ -13,7 +13,7 @@ class CPiece
         CChessBoard *m_chess_board ; 
     public :
         CPiece(int x, int y, CChessBoard *chess_board) ; 
-        virtual void Draw(const int size, Gdiplus::Graphics graphics, int x, int y)
+        virtual void Draw(const int size, Gdiplus::Graphics *graphics, int x, int y)
         {
             return ; 
         }

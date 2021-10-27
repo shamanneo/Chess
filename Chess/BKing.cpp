@@ -8,9 +8,9 @@ CBKing::CBKing(int x, int y, CChessBoard *chess_board)
     m_can_castle = true ; 
 }
 
-void CBKing::Draw(const int size, Gdiplus::Graphics graphics, int x, int y)
+void CBKing::Draw(const int size, Gdiplus::Graphics *graphics, int x, int y)
 {
-    graphics.DrawImage(&m_img, x * size, y * size, size, size) ;
+    graphics->DrawImage(&m_img, x * size, y * size, size, size) ;
 }
 
 bool CBKing::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
