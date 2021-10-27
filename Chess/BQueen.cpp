@@ -1,13 +1,15 @@
 #include "BQueen.h"
 #include "ChessBoard.h"
 
-extern CChessBoard chess_board ;
-
-void CBQueen::Draw(HDC hdc, int x, int y) 
+CBQueen::CBQueen(int x, int y, CChessBoard *chess_board)
+    : CPiece(x, y, chess_board), m_img(m_imgfile_name)
 {
-    Gdiplus::Graphics graphics(hdc) ;
-    Gdiplus::Image img(m_imgfile_name) ;
-    graphics.DrawImage(&img, x * 60, y * 60, 60, 60) ;
+    
+}
+
+void CBQueen::Draw(const int size, Gdiplus::Graphics graphics, int x, int y)
+{
+    graphics.DrawImage(&m_img, x * size, y * size, size, size) ;
 }
 
 bool CBQueen::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
@@ -35,7 +37,7 @@ bool CBQueen::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
             {
                 break ;
             }
-            piece = chess_board.GetPiece(temp_x, temp_y) ;
+            piece = GetChessBoard()->GetPiece(temp_x, temp_y) ;
             if (piece != nullptr)
             {
                 return false ;
@@ -58,7 +60,7 @@ bool CBQueen::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
             {
                 break ;
             }
-            piece = chess_board.GetPiece(temp_x, temp_y) ;
+            piece = GetChessBoard()->GetPiece(temp_x, temp_y) ;
             if (piece != nullptr)
             {
                 return false ;
@@ -70,3 +72,7 @@ bool CBQueen::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     return false ;
 }
 
+inline int CBQueen::GetColor() const
+{
+    return m_color ;
+}

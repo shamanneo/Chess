@@ -2,13 +2,15 @@
 #include "WRook.h"
 #include "ChessBoard.h"
 
-extern CChessBoard chess_board ;
-
-void CWKing::Draw(HDC hdc, int x, int y)
+CWKing::CWKing(int x, int y, CChessBoard *chess_board)
+    : CPiece(x, y, chess_board), m_img(m_imgfile_name)
 {
-    Gdiplus::Graphics graphics(hdc) ;
-    Gdiplus::Image img(m_imgfile_name) ;
-    graphics.DrawImage(&img, x * 60, y * 60, 60, 60) ;
+    m_can_castle = true;
+}
+
+void CWKing::Draw(const int size, Gdiplus::Graphics graphics, int x, int y)
+{
+    graphics.DrawImage(&m_img, x * size, y * size, size, size);
 }
 
 bool CWKing::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
@@ -35,16 +37,21 @@ bool CWKing::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     return false ; 
 }
 
+inline int CWKing::GetColor() const
+{
+    return m_color ;
+}
+
 bool CWKing::KingSideCastling()
 {
-    CPiece *piece = chess_board.GetPiece(7, 7) ; 
+    CPiece *piece = GetChessBoard()->GetPiece(7, 7) ;
     CWRook *king_side_rook = dynamic_cast<CWRook *>(piece) ; 
     if (!m_can_castle || king_side_rook->CanCastling() == false)
     {
         return false ;
     }
-    CPiece *f1 = chess_board.GetPiece(5, 7) ;
-    CPiece *g1 = chess_board.GetPiece(6, 7) ;
+    CPiece *f1 = GetChessBoard()->GetPiece(5, 7) ;
+    CPiece *g1 = GetChessBoard()->GetPiece(6, 7) ;
     if (f1 == nullptr && g1 == nullptr)
     {
         if (IsCheckMated())
@@ -56,15 +63,15 @@ bool CWKing::KingSideCastling()
 }
 bool CWKing::QueenSideCastling()
 {
-    CPiece *piece = chess_board.GetPiece(0, 7) ;
+    CPiece *piece = GetChessBoard()->GetPiece(0, 7) ;
     CWRook *queen_side_rook = dynamic_cast<CWRook *>(piece) ;
     if (!m_can_castle || queen_side_rook->CanCastling() == false)
     {
         return false ;
     }
-    CPiece *b1 = chess_board.GetPiece(1, 7) ;
-    CPiece *c1 = chess_board.GetPiece(2, 7) ;
-    CPiece *d1 = chess_board.GetPiece(3, 7) ;
+    CPiece *b1 = GetChessBoard()->GetPiece(1, 7) ;
+    CPiece *c1 = GetChessBoard()->GetPiece(2, 7) ;
+    CPiece *d1 = GetChessBoard()->GetPiece(3, 7) ;
     if ((b1 == nullptr) && (c1 == nullptr) && (d1 == nullptr))
     {
         if (IsCheckMated())
@@ -80,7 +87,7 @@ bool CWKing::IsCheckMated()
     {
         for (int y = 0 ; y < 8 ; y++)
         {
-            CPiece *piece = chess_board.GetPiece(x, y) ;
+            CPiece *piece = GetChessBoard()->GetPiece(x, y) ;
             if (piece != nullptr)
             {
                 if (piece->CanMove(piece->GetX(), piece->GetY(), this->GetX(), this->GetY()))

@@ -1,13 +1,15 @@
 #include "WRook.h"
 #include "ChessBoard.h"
 
-extern CChessBoard chess_board ;
-
-void CWRook::Draw(HDC hdc, int x, int y)
+CWRook::CWRook(int x, int y, CChessBoard *chess_board)
+    : CPiece(x, y, chess_board), m_img(m_imgfile_name)
 {
-    Gdiplus::Graphics graphics(hdc) ;
-    Gdiplus::Image img(m_imgfile_name) ;
-    graphics.DrawImage(&img, x * 60, y * 60, 60, 60) ;
+    m_can_castle = true ;
+}
+
+void CWRook::Draw(const int size, Gdiplus::Graphics graphics, int x, int y)
+{
+    graphics.DrawImage(&m_img, x * size, y * size, size, size) ;
 }
 
 bool CWRook::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
@@ -37,7 +39,7 @@ bool CWRook::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
         {
             break ;
         }
-        piece = chess_board.GetPiece(temp_x, temp_y) ;
+        piece = GetChessBoard()->GetPiece(temp_x, temp_y) ;
         if (piece != nullptr)
         {
             return false ;
@@ -46,4 +48,14 @@ bool CWRook::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     }
     m_can_castle = false ; 
     return true ;
+}
+
+inline int CWRook::GetColor() const
+{
+    return m_color ;
+}
+
+bool CWRook::CanCastling() const
+{
+    return m_can_castle ;
 }

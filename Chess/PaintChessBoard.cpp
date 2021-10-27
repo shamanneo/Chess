@@ -3,11 +3,10 @@
 #include "ChessBoard.h"
 
 CPaintChessBoard::CPaintChessBoard(HWND hwnd, CChessBoard *chessboard)
-    : m_graphics(hwnd) 
+    : m_hdc(GetDC(hwnd)), m_graphics(m_hdc)
 {
     m_chessboard = chessboard ; 
     m_hwnd = hwnd ; 
-    m_hdc = GetDC(hwnd) ; 
 }
 
 CPaintChessBoard::~CPaintChessBoard()
@@ -28,7 +27,7 @@ void CPaintChessBoard::DrawBoard()
             piece = m_chessboard->GetPiece(x, y) ; 
             if (piece != nullptr)
             {
-                // piece->Draw() ; 
+                //piece->Draw(m_size, m_graphics, x, y) ; 
             }
         }
     }
@@ -57,6 +56,6 @@ void CPaintChessBoard::MarkPos(int x, int y)
 void CPaintChessBoard::ErasePos(int x, int y)
 {
     DrawSmallRect(x, y) ;
-    CPiece* piece = m_chessboard->GetPiece(x, y) ;
-    // piece->Draw(m_size, m_graphics, x, y) ;
+    CPiece *piece = m_chessboard->GetPiece(x, y) ;
+    //piece->Draw(m_size, m_graphics, x, y) ;
 } 

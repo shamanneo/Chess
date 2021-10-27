@@ -1,10 +1,8 @@
 #include "WPawn.h"
 #include "ChessBoard.h"
 
-extern CChessBoard chess_board ;
-
-CWPawn::CWPawn(int x, int y)
-    : CPiece(x, y), m_img(m_imgfile_name) 
+CWPawn::CWPawn(int x, int y, CChessBoard *chess_board)
+    : CPiece(x, y, chess_board), m_img(m_imgfile_name) 
 {
     m_is_moved = false ; 
 }
@@ -22,7 +20,7 @@ bool CWPawn::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     }
     int x = cur_x - tar_x ;
     int y = cur_y - tar_y ;
-    CPiece *tar_piece = chess_board.GetPiece(tar_x, tar_y) ;
+    CPiece *tar_piece = GetChessBoard()->GetPiece(tar_x, tar_y) ;
     if (tar_piece != nullptr)
     {
         if ((x == 1 && y == 1) || (x == -1 && y == 1))
@@ -38,7 +36,7 @@ bool CWPawn::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     }
     else if (x == 0 && y == 2 && m_is_moved == false)
     {
-        CPiece *piece = chess_board.GetPiece(cur_x, cur_y - 1) ;
+        CPiece *piece = GetChessBoard()->GetPiece(cur_x, cur_y - 1) ;
         if (piece != nullptr)
         {
             return false ; 

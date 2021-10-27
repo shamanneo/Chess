@@ -1,7 +1,8 @@
 #pragma once
 #include <Windows.h>
+#include <windowsx.h>
 #include "ChessBoard.h"
-#include "Chess.h"
+#include "ChessGame.h"
 
 class CChessBoardWindow
 {
@@ -15,6 +16,5 @@ class CChessBoardWindow
     public :
         CChessBoardWindow(HWND hwnd) ; 
         LRESULT ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) ;
-        
 } ;
 

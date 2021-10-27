@@ -1,7 +1,8 @@
 #include "Piece.h"
 #include "ChessBoard.h"
 
-extern CChessBoard chess_board ;
+CPiece::CPiece(int x, int y, CChessBoard *chess_board)
+    : m_x(x), m_y(y), m_chess_board(chess_board) { }
 
 bool CPiece::Move(int tar_x, int tar_y)
 {
@@ -9,18 +10,44 @@ bool CPiece::Move(int tar_x, int tar_y)
     {
         return false ;
     }
-    chess_board.SetPieces(tar_x, tar_y, this->GetX(), this->GetY(), *this) ;
+    GetChessBoard()->SetPieces(tar_x, tar_y, this->GetX(), this->GetY(), *this) ;
     this->SetXY(tar_x, tar_y) ; 
     return true ;
 }
 
 bool CPiece::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
 {
-    CPiece *cur_pos = chess_board.GetPiece(cur_x, cur_y) ; 
-    CPiece *tar_pos = chess_board.GetPiece(tar_x, tar_y) ;
+    CPiece *cur_pos = GetChessBoard()->GetPiece(cur_x, cur_y) ;
+    CPiece *tar_pos = GetChessBoard()->GetPiece(tar_x, tar_y) ;
     if (tar_pos == nullptr)
     {
         return true ; 
     }
     return (cur_pos->GetColor() != tar_pos->GetColor()) ; 
+}
+
+inline int CPiece::GetColor() const
+{
+    return 0 ;
+}
+
+inline int CPiece::GetX() const
+{
+    return m_x ;
+}
+
+inline int CPiece::GetY() const
+{
+    return m_y ;
+}
+
+inline void CPiece::SetXY(int x, int y)
+{
+    m_x = x ;
+    m_y = y ;
+}
+
+CChessBoard *CPiece::GetChessBoard() const
+{
+    return m_chess_board ; 
 }

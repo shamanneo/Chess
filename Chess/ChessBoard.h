@@ -1,11 +1,7 @@
 #pragma once
-#include <cmath>
-#include <Windows.h>
-#include <objidl.h> 
-#include <gdiplus.h>
-#include "Piece.h"
 #include "PaintChessBoard.h"
 
+class CPiece ; 
 class CChessBoard
 {
     private :
@@ -20,3 +16,7 @@ class CChessBoard
         CPaintChessBoard *GetPaintBoard() const ; 
 } ;
 
+inline CPiece *CChessBoard::GetPiece(int x, int y) const // inline 
+{
+    return m_chess_board[x][y] ;
+}

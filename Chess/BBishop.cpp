@@ -1,13 +1,15 @@
 #include "BBishop.h"
 #include "ChessBoard.h"
 
-extern CChessBoard chess_board ;
-
-void CBBishop::Draw(HDC hdc, int x, int y) 
+CBBishop::CBBishop(int x, int y, CChessBoard *chess_board)
+    : CPiece(x, y, chess_board), m_img(m_imgfile_name) 
 {
-    Gdiplus::Graphics graphics(hdc) ;
-    Gdiplus::Image img(m_imgfile_name) ;
-    graphics.DrawImage(&img, x * 60, y * 60, 60, 60) ;
+
+}
+
+void CBBishop::Draw(const int size, Gdiplus::Graphics graphics, int x, int y)
+{
+    graphics.DrawImage(&m_img, x * size, y * size, size, size) ;
 }
 
 bool CBBishop::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
@@ -37,7 +39,7 @@ bool CBBishop::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
         {
             break ;
         }
-        piece = chess_board.GetPiece(temp_x, temp_y) ;
+        piece = GetChessBoard()->GetPiece(temp_x, temp_y) ;
         if (piece != nullptr)
         {
             return false ;
@@ -45,4 +47,9 @@ bool CBBishop::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
         i++ ;
     }
     return true ;
+}
+
+inline int CBBishop::GetColor() const
+{
+    return m_color ;
 }
