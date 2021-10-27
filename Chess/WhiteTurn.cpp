@@ -1,10 +1,10 @@
 #include "WhiteTurn.h"
 #include "ChessGame.h"
 
-CWhiteTurn::CWhiteTurn(CChessGame *chess_game, CChessBoard *chess_board)
+CWhiteTurn::CWhiteTurn(CChessGame *chess_game, CChessBoard *chess_board, CPaintChessBoard *paint_board)
+    : CState(chess_board, paint_board) 
 {
     m_chess_game = chess_game ;
-    m_chess_board = chess_board ; 
 }
 
 bool CWhiteTurn::CanPicked(CPiece *prev, CPiece *cur)
@@ -21,9 +21,9 @@ bool CWhiteTurn::CanPicked(CPiece *prev, CPiece *cur)
     {
         if (prev != nullptr)
         {
-            m_chess_board->GetPaintBoard()->ErasePos(prev->GetX(), prev->GetY()) ;
+            GetPaintBoard()->ErasePos(prev->GetX(), prev->GetY()) ;
         }
-        m_chess_board->GetPaintBoard()->MarkPos(cur->GetX(), cur->GetY()) ;
+        GetPaintBoard()->MarkPos(cur->GetX(), cur->GetY()) ;
         return true ;
     }
 }
@@ -31,7 +31,7 @@ bool CWhiteTurn::CanPicked(CPiece *prev, CPiece *cur)
 void CWhiteTurn::WhiteSelect(int x, int y)
 {
     CPiece *prev = m_chess_game->GetPrevPiece() ; 
-    CPiece *cur = m_chess_board->GetPiece(x, y) ; 
+    CPiece *cur = GetChessBoard()->GetPiece(x, y) ; 
     if (CanPicked(prev, cur) == true)
     {
         m_chess_game->SetState(m_chess_game->GetWhiteReadyState()) ;

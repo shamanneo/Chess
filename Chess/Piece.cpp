@@ -2,7 +2,15 @@
 #include "ChessBoard.h"
 
 CPiece::CPiece(int x, int y, CChessBoard *chess_board)
-    : m_x(x), m_y(y), m_chess_board(chess_board) { }
+    : m_x(x), m_y(y), m_chess_board(chess_board) 
+{
+
+}
+
+void CPiece::Draw(const int size, Gdiplus::Graphics *graphics, int x, int y)
+{
+    return ;
+}
 
 bool CPiece::Move(int tar_x, int tar_y)
 {

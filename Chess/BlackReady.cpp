@@ -1,10 +1,10 @@
 #include "BlackReady.h"
 #include "ChessGame.h"
 
-CBlackReady::CBlackReady(CChessGame *chess_game, CChessBoard *chess_board)
+CBlackReady::CBlackReady(CChessGame *chess_game, CChessBoard *chess_board, CPaintChessBoard *paint_board)
+    : CState(chess_board, paint_board)
 {
     m_chess_game = chess_game ; 
-    m_chess_board = chess_board ; 
 }
 
 void CBlackReady::WhiteSelect(int x, int y)
@@ -25,7 +25,7 @@ void CBlackReady::BlackSelect(int x, int y)
 void CBlackReady::BlackMove(int x, int y)
 {
     CPiece *prev = m_chess_game->GetPrevPiece() ;
-    CPiece *cur = m_chess_board->GetPiece(x, y) ;
+    CPiece *cur = GetChessBoard()->GetPiece(x, y) ;
     if (prev == cur)
     {
         return ;

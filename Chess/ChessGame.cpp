@@ -1,11 +1,11 @@
 #include "ChessGame.h"
 
-CChessGame::CChessGame(CChessBoard *chess_board)
+CChessGame::CChessGame(CChessBoard *chess_board, CPaintChessBoard *paint_board)
 {
-    m_whiteturn = new CWhiteTurn(this, chess_board) ;
-    m_whiteready = new CWhiteReady(this, chess_board) ;
-    m_blackturn = new CBlackTurn(this, chess_board) ;
-    m_blackready = new CBlackReady(this, chess_board) ;
+    m_whiteturn = new CWhiteTurn(this, chess_board, paint_board) ;
+    m_whiteready = new CWhiteReady(this, chess_board, paint_board) ;
+    m_blackturn = new CBlackTurn(this, chess_board, paint_board) ;
+    m_blackready = new CBlackReady(this, chess_board, paint_board) ;
     m_state = m_whiteturn ;
     m_prev = nullptr ;
 }

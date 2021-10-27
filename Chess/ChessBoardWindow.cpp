@@ -2,7 +2,7 @@
 
 CChessBoardWindow::CChessBoardWindow(HWND hwnd)
 {
-    m_cb = new CChessBoard(m_fcb) ;
+    m_cb = new CChessBoard ; 
     m_fcb = new CPaintChessBoard(hwnd, m_cb) ; 
 }
 
@@ -43,7 +43,7 @@ void CChessBoardWindow::OnPaint(HWND hwnd)
 
 void CChessBoardWindow::OnLButtonDown(LPARAM lParam)
 {
-    static CChessGame chess_game(m_cb) ;
+    static CChessGame chess_game(m_cb, m_fcb) ;
     int x = GET_X_LPARAM(lParam) / 60 ;
     int y = GET_Y_LPARAM(lParam) / 60 ;
     chess_game.GameState(x, y) ;

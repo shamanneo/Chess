@@ -5,7 +5,7 @@
 CPaintChessBoard::CPaintChessBoard(HWND hwnd, CChessBoard *chessboard)
     : m_hdc(GetDC(hwnd)), m_graphics(m_hdc)
 {
-    m_chessboard = chessboard ; 
+    m_chess_board = chessboard ;
     m_hwnd = hwnd ; 
 }
 
@@ -23,13 +23,18 @@ void CPaintChessBoard::DrawBoard()
     {
         for (int y = 0 ; y < 8 ; y++)
         {
-            piece = m_chessboard->GetPiece(x, y) ; 
+            piece = m_chess_board->GetPiece(x, y) ;
             if (piece != nullptr)
             {
                 piece->Draw(m_size, &m_graphics, x, y) ; 
             }
         }
     }
+}
+
+void CPaintChessBoard::DrawPiece(CPiece *piece, int x, int y)
+{
+    piece->Draw(m_size, &m_graphics, x, y) ; 
 }
 
 void CPaintChessBoard::DrawSmallRect(int x, int y)
@@ -55,6 +60,6 @@ void CPaintChessBoard::MarkPos(int x, int y)
 void CPaintChessBoard::ErasePos(int x, int y)
 {
     DrawSmallRect(x, y) ;
-    CPiece *piece = m_chessboard->GetPiece(x, y) ;
+    CPiece *piece = m_chess_board->GetPiece(x, y) ;
     piece->Draw(m_size, &m_graphics, x, y) ;
 } 

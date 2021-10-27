@@ -6,9 +6,8 @@ class CBlackReady : public CState
 {
     private :
         CChessGame *m_chess_game ; 
-        CChessBoard *m_chess_board ; 
     public :
-        CBlackReady(CChessGame *chess_game, CChessBoard *chess_board) ; 
+        CBlackReady(CChessGame *chess_game, CChessBoard *chess_board, CPaintChessBoard *paint_board) ; 
         virtual void WhiteSelect(int x, int y) override ;
         virtual void WhiteMove(int x, int y) override ;
         virtual void BlackSelect(int x, int y) override ;

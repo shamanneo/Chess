@@ -6,14 +6,12 @@ class CChessBoard
 {
     private :
         CPiece *m_chess_board[8][8] ; // chess logic. 
-        CPaintChessBoard *m_paint_board ; 
     public :
-        CChessBoard(CPaintChessBoard *paint_board) ; 
+        CChessBoard() ; 
         void Clear() ; 
         void Reset() ;
         inline CPiece *GetPiece(int x, int y) const ;
         void SetPieces(int cur_x, int cur_y, int tar_x, int tar_y, CPiece &piece) ;
-        CPaintChessBoard *GetPaintBoard() const ; 
 } ;
 
 inline CPiece *CChessBoard::GetPiece(int x, int y) const // inline 

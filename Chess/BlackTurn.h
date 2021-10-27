@@ -6,9 +6,8 @@ class CBlackTurn : public CState
 {
     private :
         CChessGame *m_chess_game ; 
-        CChessBoard *m_chess_board ;
     public :
-        CBlackTurn(CChessGame *chess_game, CChessBoard *chess_board) ; 
+        CBlackTurn(CChessGame *chess_game, CChessBoard *chess_board, CPaintChessBoard *paint_board) ; 
         bool CanPicked(CPiece *prev, CPiece *cur) ;
         virtual void WhiteSelect(int x, int y) override ;
         virtual void WhiteMove(int x, int y) override ;

@@ -1,10 +1,10 @@
 #include "WhiteReady.h"
 #include "ChessGame.h"
 
-CWhiteReady::CWhiteReady(CChessGame *chess_game, CChessBoard *chess_board)
+CWhiteReady::CWhiteReady(CChessGame *chess_game, CChessBoard *chess_board, CPaintChessBoard *paint_board)
+    : CState(chess_board, paint_board)
 {
-    m_chess_game = chess_game ;
-    m_chess_board = chess_board ;
+    m_chess_game = chess_game;
 }
 
 void CWhiteReady::WhiteSelect(int x, int y)
@@ -15,7 +15,7 @@ void CWhiteReady::WhiteSelect(int x, int y)
 void CWhiteReady::WhiteMove(int x, int y)
 {
     CPiece *prev= m_chess_game->GetPrevPiece() ; 
-    CPiece *cur = m_chess_board->GetPiece(x, y);
+    CPiece *cur = GetChessBoard()->GetPiece(x, y);
     if (prev == cur)
     {
         return ;
@@ -26,6 +26,9 @@ void CWhiteReady::WhiteMove(int x, int y)
     }
     else if (prev->Move(x, y))
     {
+        GetPaintBoard()->DrawSmallRect(prev->GetX(), prev->GetY()) ; 
+        GetPaintBoard()->DrawSmallRect(x, y) ; 
+        GetPaintBoard()->DrawPiece(prev, x, y) ;
         m_chess_game->SetState(m_chess_game->GetBlackTurnState()) ; 
     }
 }

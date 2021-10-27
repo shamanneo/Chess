@@ -16,7 +16,7 @@ class CChessGame
         CState *m_state ;
         CPiece *m_prev ; 
     public :
-        CChessGame(CChessBoard *chess_board) ; 
+        CChessGame(CChessBoard *chess_board, CPaintChessBoard *paint_board) ; 
         ~CChessGame() ; 
         void WhiteSelect(int x, int y) ;
         void WhiteMove(int x, int y) ;
