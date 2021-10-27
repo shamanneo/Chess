@@ -17,9 +17,6 @@ LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK ChessBoardWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) ; 
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-CChessBoard chess_board ;
-HWND my_hwnd ;
-
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -108,8 +105,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND chessboard_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, 480, 480, main_hwnd, nullptr, hInstance, nullptr) ; 
    CChessBoardWindow *cb_wnd = new CChessBoardWindow(chessboard_hwnd) ; 
    SetWindowLongPtr(chessboard_hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(cb_wnd)) ; 
-
-   my_hwnd = chessboard_hwnd ; 
 
    if (!main_hwnd)
    {

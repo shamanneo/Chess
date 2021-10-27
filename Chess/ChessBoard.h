@@ -8,11 +8,11 @@ class CChessBoard
         CPiece *m_chess_board[8][8] ; // chess logic. 
         CPaintChessBoard *m_paint_board ; 
     public :
-        CChessBoard() ; 
+        CChessBoard(CPaintChessBoard *paint_board) ; 
         void Clear() ; 
         void Reset() ;
         inline CPiece *GetPiece(int x, int y) const ;
-        void SetPieces(int tar_x, int tar_y, int cur_x, int cur_y, CPiece &piece) ; 
+        void SetPieces(int cur_x, int cur_y, int tar_x, int tar_y, CPiece &piece) ;
         CPaintChessBoard *GetPaintBoard() const ; 
 } ;
 

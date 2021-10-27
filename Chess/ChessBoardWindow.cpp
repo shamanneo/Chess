@@ -2,7 +2,7 @@
 
 CChessBoardWindow::CChessBoardWindow(HWND hwnd)
 {
-    m_cb = new CChessBoard ;
+    m_cb = new CChessBoard(m_fcb) ;
     m_fcb = new CPaintChessBoard(hwnd, m_cb) ; 
 }
 

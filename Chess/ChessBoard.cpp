@@ -1,10 +1,11 @@
 #include "ChessBoard.h"
 #include "Header.h"
 
-CChessBoard::CChessBoard()
+CChessBoard::CChessBoard(CPaintChessBoard *paint_board)
 {
     Clear() ; 
     Reset() ;
+    m_paint_board = paint_board ; 
 }
 
 void CChessBoard::Clear()
@@ -57,11 +58,11 @@ void CChessBoard::Reset()
     m_chess_board[7][6] = new CWPawn(7, 6, this) ;
 }
 
-void CChessBoard::SetPieces(int tar_x, int tar_y, int cur_x, int cur_y, CPiece &piece)
+void CChessBoard::SetPieces(int cur_x, int cur_y, int tar_x, int tar_y, CPiece &piece)
 {
     m_paint_board->DrawSmallRect(cur_x, cur_y) ;
     m_paint_board->DrawSmallRect(tar_x, tar_y) ;
-    // m_chess_board[cur_x][cur_y]->Draw(tar_x, tar_y) ;
+    // m_chess_board[cur_x][cur_y]->Draw(60, tar_x, tar_y) ; //=========================================> move 
     if (m_chess_board[tar_x][tar_y] == nullptr) // just move.
     {
         m_chess_board[tar_x][tar_y] = &piece ;

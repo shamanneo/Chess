@@ -19,7 +19,6 @@ void CPaintChessBoard::DrawBoard()
     CPiece *piece = nullptr ; 
     Gdiplus::Image img(L"chessboard.png") ;
     m_graphics.DrawImage(&img, 0, 0, m_size * 8, m_size * 8) ;
-
     for (int x = 0 ; x < 8 ; x++)
     {
         for (int y = 0 ; y < 8 ; y++)
