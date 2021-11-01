@@ -6,24 +6,24 @@ CState::CState(CChessBoard *chess_board, CPaintChessBoard *paint_board)
     m_paint_board = paint_board ; 
 }
 
-void CState::WhiteSelect(int x, int y)
+bool CState::WhiteSelect(int x, int y)
 {
-    return ; 
+    return false ; 
 }
 
-void CState::WhiteMove(int x, int y)
+bool CState::WhiteMove(int x, int y)
 {
-    return ; 
+    return false ; 
 }
 
-void CState::BlackSelect(int x, int y)
+bool CState::BlackSelect(int x, int y)
 {
-    return ; 
+    return false ; 
 }
 
-void CState::BlackMove(int x, int y)
+bool CState::BlackMove(int x, int y)
 {
-    return ;
+    return false ; 
 }
 
 CChessBoard *CState::GetChessBoard() const

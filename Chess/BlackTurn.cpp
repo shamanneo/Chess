@@ -28,28 +28,30 @@ bool CBlackTurn::CanPicked(CPiece *prev, CPiece *cur)
     }
 }
 
-void CBlackTurn::WhiteSelect(int x, int y)
+bool CBlackTurn::WhiteSelect(int x, int y)
 {
-    return ; 
+    return false ; 
 }
 
-void CBlackTurn::WhiteMove(int x, int y)
+bool CBlackTurn::WhiteMove(int x, int y)
 {
-    return ; 
+    return false ; 
 }
 
-void CBlackTurn::BlackSelect(int x, int y)
+bool CBlackTurn::BlackSelect(int x, int y)
 {
     CPiece *prev = m_chess_game->GetPrevPiece() ;
     CPiece *cur = GetChessBoard()->GetPiece(x, y) ;
     if (CanPicked(prev, cur) == true)
     {
         m_chess_game->SetState(m_chess_game->GetWhiteReadyState()) ;
+        return true ;
     }
+    return false ;
 }
 
-void CBlackTurn::BlackMove(int x, int y)
+bool CBlackTurn::BlackMove(int x, int y)
 {
-    return ; 
+    return false ; 
 }
 

@@ -7,22 +7,23 @@ CWhiteReady::CWhiteReady(CChessGame *chess_game, CChessBoard *chess_board, CPain
     m_chess_game = chess_game;
 }
 
-void CWhiteReady::WhiteSelect(int x, int y)
+bool CWhiteReady::WhiteSelect(int x, int y)
 {
-    return ; 
+    return false ; 
 }
 
-void CWhiteReady::WhiteMove(int x, int y)
+bool CWhiteReady::WhiteMove(int x, int y)
 {
     CPiece *prev= m_chess_game->GetPrevPiece() ; 
     CPiece *cur = GetChessBoard()->GetPiece(x, y);
     if (prev == cur)
     {
-        return ;
+        return false ; 
     }
     else if ((cur != nullptr) && (prev->GetColor() == 1) && (cur->GetColor() == 1))
     {
         m_chess_game->SetState(m_chess_game->GetWhiteTurnState()) ; 
+        return m_chess_game->WhiteSelect(x, y) ; 
     }
     else if (prev->Move(x, y))
     {
@@ -30,16 +31,17 @@ void CWhiteReady::WhiteMove(int x, int y)
         GetPaintBoard()->DrawSmallRect(x, y) ; 
         GetPaintBoard()->DrawPiece(prev, x, y) ;
         m_chess_game->SetState(m_chess_game->GetBlackTurnState()) ; 
+        return true ; 
     }
 }
 
-void CWhiteReady::BlackSelect(int x, int y)
+bool CWhiteReady::BlackSelect(int x, int y)
 {
-    return ; 
+    return false ; 
 }
 
-void CWhiteReady::BlackMove(int x, int y)
+bool CWhiteReady::BlackMove(int x, int y)
 {
-    return ;
+    return false ; 
 }
 

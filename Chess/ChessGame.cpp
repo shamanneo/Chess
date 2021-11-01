@@ -18,24 +18,24 @@ CChessGame::~CChessGame()
     delete m_blackready ;
 }
 
-void CChessGame::WhiteSelect(int x, int y)
+bool CChessGame::WhiteSelect(int x, int y)
 {
-    m_state->WhiteSelect(x, y) ; 
+    return m_state->WhiteSelect(x, y) ; 
 }
 
-void CChessGame::WhiteMove(int x, int y)
+bool CChessGame::WhiteMove(int x, int y)
 {
-    m_state->WhiteMove(x, y) ; 
+    return m_state->WhiteMove(x, y) ; 
 }
 
-void CChessGame::BlackSelect(int x, int y)
+bool CChessGame::BlackSelect(int x, int y)
 {
-    m_state->BlackSelect(x, y) ; 
+    return m_state->BlackSelect(x, y) ; 
 }
 
-void CChessGame::BlackMove(int x, int y)
+bool CChessGame::BlackMove(int x, int y)
 {
-    m_blackready->BlackMove(x, y) ; 
+    return m_blackready->BlackMove(x, y) ; 
 }
 
 CState *CChessGame::GetWhiteTurnState()
@@ -65,10 +65,25 @@ void CChessGame::SetState(CState *state)
 
 void CChessGame::GameState(int x, int y)
 {
-    WhiteSelect(x, y) ; 
-    WhiteMove(x, y) ; 
-    BlackSelect(x, y) ; 
-    BlackMove(x, y) ; 
+    if (WhiteSelect(x, y))
+    {
+        
+    }
+    else if (WhiteMove(x, y))
+    {
+        m_prev = nullptr ; 
+        return ; 
+    }
+    else if (BlackSelect(x, y))
+    {
+
+    }
+    else if (BlackMove(x, y))
+    {
+        m_prev = nullptr ;
+        return ;
+    }
+    m_prev = m_state->GetChessBoard()->GetPiece(x, y) ; 
 }
 
 CPiece *CChessGame::GetPrevPiece() const

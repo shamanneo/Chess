@@ -18,10 +18,10 @@ class CChessGame
     public :
         CChessGame(CChessBoard *chess_board, CPaintChessBoard *paint_board) ; 
         ~CChessGame() ; 
-        void WhiteSelect(int x, int y) ;
-        void WhiteMove(int x, int y) ;
-        void BlackSelect(int x, int y) ;
-        void BlackMove(int x, int y) ;
+        bool WhiteSelect(int x, int y) ;
+        bool WhiteMove(int x, int y) ;
+        bool BlackSelect(int x, int y) ;
+        bool BlackMove(int x, int y) ;
         CState *GetWhiteTurnState() ;
         CState *GetWhiteReadyState() ;
         CState *GetBlackTurnState() ;
