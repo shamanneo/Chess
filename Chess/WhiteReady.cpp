@@ -18,21 +18,24 @@ bool CWhiteReady::WhiteMove(int x, int y)
     CPiece *cur = GetChessBoard()->GetPiece(x, y);
     if (prev == cur)
     {
-        return false ; 
+        return true ; 
     }
     else if ((cur != nullptr) && (prev->GetColor() == 1) && (cur->GetColor() == 1))
     {
         m_chess_game->SetState(m_chess_game->GetWhiteTurnState()) ; 
-        return m_chess_game->WhiteSelect(x, y) ; 
+        m_chess_game->WhiteSelect(x, y) ; 
+        m_chess_game->SetPrevPiece(cur) ;
     }
     else if (prev->Move(x, y))
     {
         GetPaintBoard()->DrawSmallRect(prev->GetX(), prev->GetY()) ; 
         GetPaintBoard()->DrawSmallRect(x, y) ; 
         GetPaintBoard()->DrawPiece(prev, x, y) ;
+        prev->SetXY(x, y) ;
         m_chess_game->SetState(m_chess_game->GetBlackTurnState()) ; 
-        return true ; 
+        m_chess_game->SetPrevPiece(nullptr) ;
     }
+    return true ;
 }
 
 bool CWhiteReady::BlackSelect(int x, int y)

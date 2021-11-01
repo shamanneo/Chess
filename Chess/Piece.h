@@ -19,7 +19,7 @@ class CPiece
         inline virtual int GetColor() const  ; 
         inline int GetX() const ; 
         inline int GetY() const ; 
-        inline void SetXY(int x, int y) ; 
+        void SetXY(int x, int y) ; 
         CChessBoard *GetChessBoard() const ; 
 } ;
 

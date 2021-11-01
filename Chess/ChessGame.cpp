@@ -67,26 +67,28 @@ void CChessGame::GameState(int x, int y)
 {
     if (WhiteSelect(x, y))
     {
-        
+        return ;
     }
     else if (WhiteMove(x, y))
     {
-        m_prev = nullptr ; 
         return ; 
     }
     else if (BlackSelect(x, y))
     {
-
+        return ; 
     }
     else if (BlackMove(x, y))
     {
-        m_prev = nullptr ;
-        return ;
+        return ; 
     }
-    m_prev = m_state->GetChessBoard()->GetPiece(x, y) ; 
 }
 
-CPiece *CChessGame::GetPrevPiece() const
+CPiece *CChessGame::GetPrevPiece() const 
 {
     return m_prev ; 
+}
+
+void CChessGame::SetPrevPiece(CPiece *piece)
+{
+    m_prev = piece ; 
 }

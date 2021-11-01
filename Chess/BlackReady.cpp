@@ -28,19 +28,22 @@ bool CBlackReady::BlackMove(int x, int y)
     CPiece *cur = GetChessBoard()->GetPiece(x, y) ;
     if (prev == cur)
     {
-        return false ;
+        return true ;
     }
-    else if ((cur != nullptr) && (prev->GetColor() == 1) && (cur->GetColor() == 1))
+    else if ((cur != nullptr) && (prev->GetColor() == 0) && (cur->GetColor() == 0))
     {
         m_chess_game->SetState(m_chess_game->GetBlackTurnState()) ;
-        return m_chess_game->BlackSelect(x, y) ; 
+        m_chess_game->BlackSelect(x, y) ; 
+        m_chess_game->SetPrevPiece(cur) ;
     }
     else if (prev->Move(x, y))
     {
         GetPaintBoard()->DrawSmallRect(prev->GetX(), prev->GetY()) ;
         GetPaintBoard()->DrawSmallRect(x, y) ;
         GetPaintBoard()->DrawPiece(prev, x, y) ;
-        m_chess_game->SetState(m_chess_game->GetBlackReadyState()) ;
-        return true ; 
+        prev->SetXY(x, y) ;
+        m_chess_game->SetState(m_chess_game->GetWhiteTurnState()) ;
+        m_chess_game->SetPrevPiece(nullptr) ; 
     }
+    return true ;
 }

@@ -35,9 +35,9 @@ bool CWhiteTurn::WhiteSelect(int x, int y)
     if (CanPicked(prev, cur) == true)
     {
         m_chess_game->SetState(m_chess_game->GetWhiteReadyState()) ;
-        return true ;
+        m_chess_game->SetPrevPiece(cur) ; 
     }
-    return false ; 
+    return true ; 
 }
 
 bool CWhiteTurn::WhiteMove(int x, int y)

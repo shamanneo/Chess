@@ -29,5 +29,6 @@ class CChessGame
         void SetState(CState *state) ; 
         void GameState(int x, int y) ; 
         CPiece *GetPrevPiece() const ; 
+        void SetPrevPiece(CPiece *piece) ;
 } ;
 

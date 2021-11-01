@@ -19,7 +19,7 @@ bool CPiece::Move(int tar_x, int tar_y)
         return false ;
     }
     GetChessBoard()->SetPieces(this->GetX(), this->GetY(), tar_x, tar_y, *this) ;
-    this->SetXY(tar_x, tar_y) ; 
+    // this->SetXY(tar_x, tar_y) ; 
     return true ;
 }
 
@@ -49,7 +49,7 @@ inline int CPiece::GetY() const
     return m_y ;
 }
 
-inline void CPiece::SetXY(int x, int y)
+void CPiece::SetXY(int x, int y)
 {
     m_x = x ;
     m_y = y ;

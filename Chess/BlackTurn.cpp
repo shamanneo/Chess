@@ -44,10 +44,10 @@ bool CBlackTurn::BlackSelect(int x, int y)
     CPiece *cur = GetChessBoard()->GetPiece(x, y) ;
     if (CanPicked(prev, cur) == true)
     {
-        m_chess_game->SetState(m_chess_game->GetWhiteReadyState()) ;
-        return true ;
+        m_chess_game->SetState(m_chess_game->GetBlackReadyState()) ;
+        m_chess_game->SetPrevPiece(cur) ;
     }
-    return false ;
+    return true ;
 }
 
 bool CBlackTurn::BlackMove(int x, int y)
