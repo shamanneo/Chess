@@ -56,11 +56,7 @@ void CPaintChessBoard::MarkPos(int x, int y)
     m_graphics.FillRectangle(&brush, x * m_size + 1, y * m_size + 1, m_size, m_size) ;
 }
 
-void CPaintChessBoard::ErasePos(int x, int y) // modification.
+void CPaintChessBoard::ErasePos(int x, int y) 
 {
     DrawSmallRect(x, y) ;
-    /*
-    CPiece *piece = m_chess_board->GetPiece(x, y) ; // 2
-    piece->Draw(m_size, &m_graphics, x, y) ;
-    */ // ====> Go to DrawPiece method. 
 } 

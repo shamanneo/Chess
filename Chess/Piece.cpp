@@ -1,8 +1,8 @@
 #include "Piece.h"
 #include "ChessBoard.h"
 
-CPiece::CPiece(int x, int y, CChessBoard *chess_board)
-    : m_x(x), m_y(y), m_chess_board(chess_board) 
+CPiece::CPiece(int x, int y, CChessBoard *chess_board, HWND hwnd)
+    : m_x(x), m_y(y), m_chess_board(chess_board), m_hwnd(hwnd) 
 {
 
 }
@@ -14,10 +14,21 @@ void CPiece::Draw(const int size, Gdiplus::Graphics *graphics, int x, int y)
 
 bool CPiece::Move(int tar_x, int tar_y)
 {
-    if (!this->CanMove(this->GetX(), this->GetY(), tar_x, tar_y))
+    int cur_x = this->GetX() ; 
+    int cur_y = this->GetY() ;
+    if (!this->CanMove(cur_x, cur_y, tar_x, tar_y))
     {
         return false ;
     }
+    CPaintChessBoard pcb(m_hwnd) ;
+    pcb.DrawSmallRect(cur_x, cur_y) ; 
+    pcb.DrawSmallRect(tar_x, tar_y) ; 
+    pcb.DrawPiece(this, tar_x, tar_y) ; 
+    /*
+    GetPaintBoard()->DrawSmallRect(prev->GetX(), prev->GetY());
+    GetPaintBoard()->DrawSmallRect(x, y);
+    GetPaintBoard()->DrawPiece(prev, x, y);
+    */
     GetChessBoard()->SetPieces(this->GetX(), this->GetY(), tar_x, tar_y, *this) ;
     return true ;
 }

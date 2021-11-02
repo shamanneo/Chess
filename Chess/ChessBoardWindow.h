@@ -8,10 +8,9 @@ class CChessBoardWindow
 {
     private :
         CChessBoard *m_cb ;
-        CPaintChessBoard *m_fcb ; 
     protected :
         void OnPaint(HWND hwnd) ;
-        void OnLButtonDown(LPARAM lParam) ;
+        void OnLButtonDown(HWND hwnd, LPARAM lParam) ;
         void OnDestory() ;
     public :
         CChessBoardWindow(HWND hwnd) ; 

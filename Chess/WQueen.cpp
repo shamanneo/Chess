@@ -1,8 +1,8 @@
 #include "WQueen.h"
 #include "ChessBoard.h"
 
-CWQueen::CWQueen(int x, int y, CChessBoard* chess_board)
-    : CPiece(x, y, chess_board), m_img(m_imgfile_name)
+CWQueen::CWQueen(int x, int y, CChessBoard* chess_board, HWND hwnd)
+    : CPiece(x, y, chess_board, hwnd), m_img(m_imgfile_name)
 {
 
 }

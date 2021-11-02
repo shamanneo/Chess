@@ -1,8 +1,8 @@
 #include "WPawn.h"
 #include "ChessBoard.h"
 
-CWPawn::CWPawn(int x, int y, CChessBoard *chess_board)
-    : CPiece(x, y, chess_board), m_img(m_imgfile_name) 
+CWPawn::CWPawn(int x, int y, CChessBoard *chess_board, HWND hwnd)
+    : CPiece(x, y, chess_board, hwnd), m_img(m_imgfile_name) 
 {
     m_is_moved = false ; 
 }

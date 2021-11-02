@@ -1,8 +1,8 @@
 #include "BKnight.h"
 #include "ChessBoard.h"
 
-CBKnight::CBKnight(int x, int y, CChessBoard *chess_board)
-    : CPiece(x, y, chess_board), m_img(m_imgfile_name)
+CBKnight::CBKnight(int x, int y, CChessBoard *chess_board, HWND hwnd)
+    : CPiece(x, y, chess_board, hwnd), m_img(m_imgfile_name)
 {
 
 }

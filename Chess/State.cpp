@@ -1,9 +1,9 @@
 #include "State.h"
 
-CState::CState(CChessBoard *chess_board, CPaintChessBoard *paint_board)
+CState::CState(CChessBoard *chess_board, HWND hwnd)
 {
     m_chess_board = chess_board ; 
-    m_paint_board = paint_board ; 
+    m_hwnd = hwnd ; 
 }
 
 bool CState::WhiteSelect(int x, int y)
@@ -31,7 +31,8 @@ CChessBoard *CState::GetChessBoard() const
     return m_chess_board ; 
 }
 
-CPaintChessBoard *CState::GetPaintBoard() const
+HWND CState::Gethwnd() const
 {
-    return m_paint_board ; 
+    return m_hwnd ; 
 }
+

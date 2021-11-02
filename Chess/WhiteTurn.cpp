@@ -1,8 +1,8 @@
 #include "WhiteTurn.h"
 #include "ChessGame.h"
 
-CWhiteTurn::CWhiteTurn(CChessGame *chess_game, CChessBoard *chess_board, CPaintChessBoard *paint_board)
-    : CState(chess_board, paint_board) 
+CWhiteTurn::CWhiteTurn(CChessGame *chess_game, CChessBoard *chess_board, HWND hwnd)
+    : CState(chess_board, hwnd) 
 {
     m_chess_game = chess_game ;
 }
@@ -19,11 +19,13 @@ bool CWhiteTurn::CanPicked(CPiece *prev, CPiece *cur)
     }
     else
     {
+        CPaintChessBoard pcb(Gethwnd()) ; 
         if (prev != nullptr)
         {
-            GetPaintBoard()->ErasePos(prev->GetX(), prev->GetY()) ;
+            pcb.ErasePos(prev->GetX(), prev->GetY()) ;
+            pcb.DrawPiece(prev, prev->GetX(), prev->GetY()) ;
         }
-        GetPaintBoard()->MarkPos(cur->GetX(), cur->GetY()) ;
+        pcb.MarkPos(cur->GetX(), cur->GetY()) ;
         return true ;
     }
 }

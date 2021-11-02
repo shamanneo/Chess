@@ -2,8 +2,7 @@
 
 CChessBoardWindow::CChessBoardWindow(HWND hwnd)
 {
-    m_cb = new CChessBoard ; 
-    m_fcb = new CPaintChessBoard(hwnd) ; 
+    m_cb = new CChessBoard(hwnd) ; 
 }
 
 LRESULT CChessBoardWindow::ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -17,7 +16,7 @@ LRESULT CChessBoardWindow::ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wPa
         }
         case WM_LBUTTONDOWN:
         {
-            OnLButtonDown(lParam) ; 
+            OnLButtonDown(hwnd, lParam) ; 
             break ;
         }
         case WM_DESTROY:
@@ -37,13 +36,14 @@ void CChessBoardWindow::OnPaint(HWND hwnd)
 {
     PAINTSTRUCT ps;
     HDC hdc = BeginPaint(hwnd, &ps) ;
-    m_fcb->DrawBoard(m_cb) ;
+    CPaintChessBoard pcb(hwnd) ;
+    pcb.DrawBoard(m_cb) ; 
     EndPaint(hwnd, &ps);
 }
 
-void CChessBoardWindow::OnLButtonDown(LPARAM lParam)
+void CChessBoardWindow::OnLButtonDown(HWND hwnd, LPARAM lParam)
 {
-    static CChessGame chess_game(m_cb, m_fcb) ;
+    static CChessGame chess_game(m_cb, hwnd) ;
     int x = GET_X_LPARAM(lParam) / 60 ;
     int y = GET_Y_LPARAM(lParam) / 60 ;
     chess_game.GameState(x, y) ;
