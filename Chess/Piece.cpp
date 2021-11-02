@@ -24,24 +24,20 @@ bool CPiece::Move(int tar_x, int tar_y)
     pcb.DrawSmallRect(cur_x, cur_y) ; 
     pcb.DrawSmallRect(tar_x, tar_y) ; 
     pcb.DrawPiece(this, tar_x, tar_y) ; 
-    /*
-    GetPaintBoard()->DrawSmallRect(prev->GetX(), prev->GetY());
-    GetPaintBoard()->DrawSmallRect(x, y);
-    GetPaintBoard()->DrawPiece(prev, x, y);
-    */
     GetChessBoard()->SetPieces(this->GetX(), this->GetY(), tar_x, tar_y, *this) ;
+    this->SetXY(tar_x, tar_y) ;
     return true ;
 }
 
 bool CPiece::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
 {
-    CPiece *cur_pos = GetChessBoard()->GetPiece(cur_x, cur_y) ;
-    CPiece *tar_pos = GetChessBoard()->GetPiece(tar_x, tar_y) ;
-    if (tar_pos == nullptr)
+    CPiece *cur = GetChessBoard()->GetPiece(cur_x, cur_y) ;
+    CPiece *tar = GetChessBoard()->GetPiece(tar_x, tar_y) ;
+    if (tar == nullptr)
     {
         return true ; 
     }
-    return (cur_pos->GetColor() != tar_pos->GetColor()) ; 
+    return (cur->GetColor() != tar->GetColor()) ; 
 }
 
 inline int CPiece::GetColor() const

@@ -27,8 +27,7 @@ bool CWhiteReady::WhiteMove(int x, int y)
         m_chess_game->SetPrevPiece(cur) ;
     }
     else if (prev->Move(x, y))
-    {;
-        prev->SetXY(x, y) ;
+    {
         m_chess_game->SetState(m_chess_game->GetBlackTurnState()) ; 
         m_chess_game->SetPrevPiece(nullptr) ;
     }

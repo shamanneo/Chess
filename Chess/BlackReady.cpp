@@ -38,7 +38,6 @@ bool CBlackReady::BlackMove(int x, int y)
     }
     else if (prev->Move(x, y))
     {
-        prev->SetXY(x, y) ;
         m_chess_game->SetState(m_chess_game->GetWhiteTurnState()) ;
         m_chess_game->SetPrevPiece(nullptr) ; 
     }
