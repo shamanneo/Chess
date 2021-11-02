@@ -5,17 +5,17 @@
 #define MAX_LOADSTRING 100
 
 // Global Variables:
-HINSTANCE hInst;                                // current instance
-WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
-WCHAR szWindowClass[MAX_LOADSTRING];   
-WCHAR szChessBoardWindowClass[MAX_LOADSTRING];
+HINSTANCE hInst ;                                // current instance
+WCHAR szTitle[MAX_LOADSTRING] ;                  // The title bar text
+WCHAR szWindowClass[MAX_LOADSTRING] ;   
+WCHAR szChessBoardWindowClass[MAX_LOADSTRING] ;
 
-ATOM                MyRegisterClass(HINSTANCE hInstance);
+ATOM                MyRegisterClass(HINSTANCE hInstance) ;
 ATOM                MyRegisterChessBoardClass(HINSTANCE hInstance) ;
-BOOL                InitInstance(HINSTANCE, int);
-LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
+BOOL                InitInstance(HINSTANCE, int) ;
+LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM) ;
 LRESULT CALLBACK ChessBoardWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) ; 
-INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM) ;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -23,8 +23,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ int       nCmdShow)
 {
     lstrcpy(szChessBoardWindowClass, _T("ChessBoardClass")) ; 
-    UNREFERENCED_PARAMETER(hPrevInstance);
-    UNREFERENCED_PARAMETER(lpCmdLine);
+    UNREFERENCED_PARAMETER(hPrevInstance) ;
+    UNREFERENCED_PARAMETER(lpCmdLine) ;
 
     ULONG_PTR gdiplustoken ; 
     Gdiplus::GdiplusStartupInput gdiplusStartupInput ;
@@ -36,32 +36,28 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MyRegisterChessBoardClass(hInstance) ; 
     if (!InitInstance (hInstance, nCmdShow))
     {
-        return FALSE;
+        return FALSE ;
     }
 
-    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CHESS));
-
-    MSG msg;
-
-    // Main message loop:
+    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CHESS)) ;
+    MSG msg ;
     while (GetMessage(&msg, nullptr, 0, 0))
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            TranslateMessage(&msg) ;
+            DispatchMessage(&msg) ;
         }
     }
     Gdiplus::GdiplusShutdown(gdiplustoken) ; 
-
-    return (int) msg.wParam;
+    return (int) msg.wParam ;
 }
 
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
-    WNDCLASSEXW wcex;
+    WNDCLASSEXW wcex ;
 
-    wcex.cbSize = sizeof(WNDCLASSEX);
+    wcex.cbSize = sizeof(WNDCLASSEX) ;
     wcex.style = 0 ; 
     wcex.lpfnWndProc    = WndProc ;
     wcex.cbClsExtra     = 0 ;
@@ -74,14 +70,14 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.lpszClassName  = szWindowClass ;
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL)) ;
 
-    return RegisterClassExW(&wcex);
+    return RegisterClassExW(&wcex) ;
 }
 
 ATOM MyRegisterChessBoardClass(HINSTANCE hInstance)
 {
-    WNDCLASSEXW wcex;
+    WNDCLASSEXW wcex ;
 
-    wcex.cbSize = sizeof(WNDCLASSEX);
+    wcex.cbSize = sizeof(WNDCLASSEX) ;
     wcex.style = 0 ;
     wcex.lpfnWndProc = ChessBoardWndProc ;
     wcex.cbClsExtra = 0 ;
@@ -94,14 +90,14 @@ ATOM MyRegisterChessBoardClass(HINSTANCE hInstance)
     wcex.lpszClassName = szChessBoardWindowClass ; 
     wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL)) ;
 
-    return RegisterClassExW(&wcex);
+    return RegisterClassExW(&wcex) ;
 }
 
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance; // Store instance handle in our global variable
+   hInst = hInstance ; 
    const DWORD wsStyle = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX ;
-   HWND main_hwnd = CreateWindowW(szWindowClass, szTitle, wsStyle, 0, 0, 600, 539, nullptr, nullptr, hInstance, nullptr) ;
+   HWND main_hwnd = CreateWindowW(szWindowClass, szTitle, wsStyle, 0, 0, 496, 539, nullptr, nullptr, hInstance, nullptr) ;
    HWND chessboard_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, 480, 480, main_hwnd, nullptr, hInstance, nullptr) ; 
    CChessBoardWindow *cb_wnd = new CChessBoardWindow(chessboard_hwnd) ; 
    SetWindowLongPtr(chessboard_hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(cb_wnd)) ; 
@@ -160,7 +156,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         default:
         {
-            return DefWindowProc(hWnd, message, wParam, lParam);
+            return DefWindowProc(hWnd, message, wParam, lParam) ;
         }
     }
     return 0 ;
@@ -172,22 +168,24 @@ LRESULT CALLBACK ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARA
     return cb_wnd->ChessBoardWndProc(hwnd, message, wParam, lParam) ; 
 }
 
-// Message handler for about box.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);
     switch (message)
     {
-    case WM_INITDIALOG:
-        return (INT_PTR)TRUE;
-
-    case WM_COMMAND:
-        if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
+        case WM_INITDIALOG:
         {
-            EndDialog(hDlg, LOWORD(wParam));
-            return (INT_PTR)TRUE;
+            return (INT_PTR)TRUE ;
         }
-        break;
+        case WM_COMMAND:
+        {
+            if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
+            {
+                EndDialog(hDlg, LOWORD(wParam)) ;
+                return (INT_PTR)TRUE ;
+            }
+            break ;
+        }
     }
-    return (INT_PTR)FALSE;
+    return (INT_PTR)FALSE ;
 }
