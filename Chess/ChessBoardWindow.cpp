@@ -3,7 +3,7 @@
 CChessBoardWindow::CChessBoardWindow(HWND hwnd)
 {
     m_cb = new CChessBoard ; 
-    m_fcb = new CPaintChessBoard(hwnd, m_cb) ; 
+    m_fcb = new CPaintChessBoard(hwnd) ; 
 }
 
 LRESULT CChessBoardWindow::ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -13,7 +13,7 @@ LRESULT CChessBoardWindow::ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wPa
         case WM_PAINT:
         {
             OnPaint(hwnd) ; 
-            break;
+            break ;
         }
         case WM_LBUTTONDOWN:
         {
@@ -23,11 +23,11 @@ LRESULT CChessBoardWindow::ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wPa
         case WM_DESTROY:
         {
             OnDestory() ; 
-            break;
+            break ;
         }
         default:
         {
-            return DefWindowProc(hwnd, message, wParam, lParam);
+            return DefWindowProc(hwnd, message, wParam, lParam) ;
         }
     }
     return 0 ;
@@ -37,7 +37,7 @@ void CChessBoardWindow::OnPaint(HWND hwnd)
 {
     PAINTSTRUCT ps;
     HDC hdc = BeginPaint(hwnd, &ps) ;
-    m_fcb->DrawBoard() ;
+    m_fcb->DrawBoard(m_cb) ;
     EndPaint(hwnd, &ps);
 }
 

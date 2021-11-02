@@ -19,7 +19,6 @@ bool CPiece::Move(int tar_x, int tar_y)
         return false ;
     }
     GetChessBoard()->SetPieces(this->GetX(), this->GetY(), tar_x, tar_y, *this) ;
-    // this->SetXY(tar_x, tar_y) ; 
     return true ;
 }
 

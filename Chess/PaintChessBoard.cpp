@@ -2,10 +2,9 @@
 #include "Piece.h"
 #include "ChessBoard.h"
 
-CPaintChessBoard::CPaintChessBoard(HWND hwnd, CChessBoard *chessboard)
+CPaintChessBoard::CPaintChessBoard(HWND hwnd)
     : m_hdc(GetDC(hwnd)), m_graphics(m_hdc)
 {
-    m_chess_board = chessboard ;
     m_hwnd = hwnd ; 
 }
 
@@ -14,7 +13,7 @@ CPaintChessBoard::~CPaintChessBoard()
     ReleaseDC(m_hwnd, m_hdc) ; 
 }
 
-void CPaintChessBoard::DrawBoard()
+void CPaintChessBoard::DrawBoard(CChessBoard *chess_board)
 {
     CPiece *piece = nullptr ; 
     Gdiplus::Image img(L"chessboard.png") ;
@@ -23,10 +22,10 @@ void CPaintChessBoard::DrawBoard()
     {
         for (int y = 0 ; y < 8 ; y++)
         {
-            piece = m_chess_board->GetPiece(x, y) ;
+            piece = chess_board->GetPiece(x, y) ; 
             if (piece != nullptr)
             {
-                piece->Draw(m_size, &m_graphics, x, y) ; 
+                DrawPiece(piece, x, y) ; 
             }
         }
     }
@@ -57,9 +56,11 @@ void CPaintChessBoard::MarkPos(int x, int y)
     m_graphics.FillRectangle(&brush, x * m_size + 1, y * m_size + 1, m_size, m_size) ;
 }
 
-void CPaintChessBoard::ErasePos(int x, int y)
+void CPaintChessBoard::ErasePos(int x, int y) // modification.
 {
     DrawSmallRect(x, y) ;
-    CPiece *piece = m_chess_board->GetPiece(x, y) ;
+    /*
+    CPiece *piece = m_chess_board->GetPiece(x, y) ; // 2
     piece->Draw(m_size, &m_graphics, x, y) ;
+    */ // ====> Go to DrawPiece method. 
 } 
