@@ -1,5 +1,5 @@
 #pragma once
-#include <Windows.h>
+
 #include <windowsx.h>
 #include "ChessBoard.h"
 #include "ChessGame.h"

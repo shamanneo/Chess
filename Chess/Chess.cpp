@@ -1,4 +1,3 @@
-// Chess.cpp : Defines the entry point for the application.
 #include "Chess.h"
 #pragma comment (lib, "Gdiplus.lib") 
 
@@ -13,9 +12,8 @@ WCHAR szChessBoardWindowClass[MAX_LOADSTRING] ;
 ATOM                MyRegisterClass(HINSTANCE hInstance) ;
 ATOM                MyRegisterChessBoardClass(HINSTANCE hInstance) ;
 BOOL                InitInstance(HINSTANCE, int) ;
-LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM) ;
-LRESULT CALLBACK ChessBoardWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) ; 
-INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM) ;
+LRESULT CALLBACK    MainWndProc(HWND, UINT, WPARAM, LPARAM) ;
+LRESULT CALLBACK    ChessBoardWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) ; 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -34,6 +32,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MyRegisterClass(hInstance);
     MyRegisterChessBoardClass(hInstance) ; 
+
     if (!InitInstance (hInstance, nCmdShow))
     {
         return FALSE ;
@@ -59,7 +58,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 
     wcex.cbSize = sizeof(WNDCLASSEX) ;
     wcex.style = 0 ; 
-    wcex.lpfnWndProc    = WndProc ;
+    wcex.lpfnWndProc    = MainWndProc ;
     wcex.cbClsExtra     = 0 ;
     wcex.cbWndExtra     = 0 ;
     wcex.hInstance      = hInstance ;
@@ -101,65 +100,21 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND chessboard_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, 480, 480, main_hwnd, nullptr, hInstance, nullptr) ; 
    CChessBoardWindow *cb_wnd = new CChessBoardWindow(chessboard_hwnd) ; 
    SetWindowLongPtr(chessboard_hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(cb_wnd)) ; 
-
    if (!main_hwnd)
    {
-      return FALSE;
+      return FALSE ;
    }
 
-   ShowWindow(main_hwnd, nCmdShow);
-   UpdateWindow(main_hwnd);
+   ShowWindow(main_hwnd, nCmdShow) ;
+   UpdateWindow(main_hwnd) ;
 
    return TRUE;
 }
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    switch (message)
-    {
-        case WM_COMMAND:
-        {
-            int wmId = LOWORD(wParam);
-            switch (wmId)
-            {
-                case IDM_ABOUT:
-                {
-                    DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-                    break;
-                }
-                case IDM_EXIT:
-                {
-                    DestroyWindow(hWnd);
-                    break;
-                }
-                default:
-                {
-                    return DefWindowProc(hWnd, message, wParam, lParam);
-                }
-            }
-            break;
-        }
-        case WM_PAINT :
-        {
-            PAINTSTRUCT ps ;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            Gdiplus::Graphics gp(hWnd) ;
-            Gdiplus::Pen pen(Gdiplus::Color(255, 65, 65, 65)) ;
-            gp.DrawRectangle(&pen, 0, 0, 600, 549) ;
-            EndPaint(hWnd, &ps) ; 
-            break ; 
-        }
-        case WM_DESTROY:
-        {
-            PostQuitMessage(0) ;
-            break ;
-        }
-        default:
-        {
-            return DefWindowProc(hWnd, message, wParam, lParam) ;
-        }
-    }
-    return 0 ;
+    CMainWindow main_wnd ; 
+    return main_wnd.WndProc(hWnd, message, wParam, lParam) ; 
 }
 
 LRESULT CALLBACK ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
