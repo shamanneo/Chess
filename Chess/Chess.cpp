@@ -100,10 +100,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND chessboard_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, 480, 480, main_hwnd, nullptr, hInstance, nullptr) ; 
    CChessBoardWindow *cb_wnd = new CChessBoardWindow(chessboard_hwnd) ; 
    SetWindowLongPtr(chessboard_hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(cb_wnd)) ; 
-   if (!main_hwnd)
-   {
-      return FALSE ;
-   }
 
    ShowWindow(main_hwnd, nCmdShow) ;
    UpdateWindow(main_hwnd) ;
