@@ -13,6 +13,7 @@ class CChessBoardWindow
         void OnDestory() ;
     public :
         CChessBoardWindow(HWND hwnd) ; 
+        ~CChessBoardWindow() ;
         LRESULT ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) ;
 } ;
 

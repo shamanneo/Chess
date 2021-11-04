@@ -8,6 +8,7 @@ class CChessBoard
         CPiece *m_chess_board[8][8] ; // chess logic. 
     public :
         CChessBoard(HWND hwnd) ; 
+        ~CChessBoard() ; 
         void Clear() ; 
         void Reset(HWND hwnd) ;
         inline CPiece *GetPiece(int x, int y) const ;

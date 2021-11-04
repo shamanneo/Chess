@@ -12,4 +12,5 @@ class CBPawn : public CPiece
         virtual void Draw(const int size, Gdiplus::Graphics *graphics, int x, int y) override ;
         virtual bool CanMove(int cur_x, int cur_y, int tar_x, int tar_y) override ; 
         inline virtual int GetColor() const ; 
+        void Promotion(int cur_x, int cur_y, int tar_x, int tar_y) ;
 } ;

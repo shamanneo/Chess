@@ -1,4 +1,7 @@
 #include "Chess.h"
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 #pragma comment (lib, "Gdiplus.lib") 
 
 #define MAX_LOADSTRING 100
@@ -48,6 +51,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             DispatchMessage(&msg) ;
         }
     }
+    _CrtDumpMemoryLeaks() ;
     Gdiplus::GdiplusShutdown(gdiplustoken) ; 
     return (int) msg.wParam ;
 }
@@ -97,9 +101,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance ; 
    const DWORD wsStyle = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX ;
    HWND main_hwnd = CreateWindowW(szWindowClass, szTitle, wsStyle, 0, 0, 496, 539, nullptr, nullptr, hInstance, nullptr) ;
-   HWND chessboard_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, 480, 480, main_hwnd, nullptr, hInstance, nullptr) ; 
-   CChessBoardWindow *cb_wnd = new CChessBoardWindow(chessboard_hwnd) ; 
-   SetWindowLongPtr(chessboard_hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(cb_wnd)) ; 
+   HWND chess_board_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, 480, 480, main_hwnd, nullptr, hInstance, nullptr) ; 
+   CChessBoardWindow *cb_wnd = new CChessBoardWindow(chess_board_hwnd) ;
+   SetWindowLongPtr(chess_board_hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(cb_wnd)) ;
 
    ShowWindow(main_hwnd, nCmdShow) ;
    UpdateWindow(main_hwnd) ;

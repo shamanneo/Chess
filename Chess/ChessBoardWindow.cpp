@@ -5,6 +5,11 @@ CChessBoardWindow::CChessBoardWindow(HWND hwnd)
     m_cb = new CChessBoard(hwnd) ; 
 }
 
+CChessBoardWindow::~CChessBoardWindow()
+{
+    delete m_cb ; 
+}
+
 LRESULT CChessBoardWindow::ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)

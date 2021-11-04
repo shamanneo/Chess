@@ -7,6 +7,20 @@ CChessBoard::CChessBoard(HWND hwnd)
     Reset(hwnd) ;
 }
 
+CChessBoard::~CChessBoard()
+{
+    for (int x = 0 ; x < 8 ; x++)
+    {
+        for (int y = 0 ; y < 8 ; y++)
+        {
+            if (m_chess_board[x][y] != nullptr)
+            {
+                delete m_chess_board[x][y] ; 
+            }
+        }
+    }
+}
+
 void CChessBoard::Clear()
 {
     for (int x = 0 ; x < 8 ; x++)

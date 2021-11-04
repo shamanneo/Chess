@@ -8,11 +8,6 @@ CWPawn::CWPawn(int x, int y, CChessBoard *chess_board, HWND hwnd)
     m_is_moved = false ; 
 }
 
-CWPawn::~CWPawn()
-{
-
-}
-
 void CWPawn::Draw(const int size, Gdiplus::Graphics *graphics, int x, int y)
 {
     graphics->DrawImage(&m_img, x * size, y * size, size, size) ;
@@ -33,7 +28,7 @@ bool CWPawn::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
         {
             if (tar_y == 0)
             {
-                Promotion(cur_x, cur_y, tar_x, tar_y) ; 
+                Promotion(cur_x, cur_y, tar_x, tar_y) ; // Promotion!!!
                 return true ; 
             }
             AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
