@@ -44,6 +44,7 @@ bool CWQueen::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
             }
             i++ ;
         }
+        AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
         return true ;
     }
     else if (x == 0 || y == 0)
@@ -67,6 +68,7 @@ bool CWQueen::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
             }
             i++ ;
         }
+        AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
         return true ;
     }
     return false ;

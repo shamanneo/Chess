@@ -24,15 +24,24 @@ bool CBKing::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     if (x < 2 && y < 2) 
     {
         m_can_castle = false ;
+        AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
         return true ;
     }
     if ((tar_x - cur_x == 2) && (tar_y - cur_y == 0)) // KingSide Castling.
     {
-        return KingSideCastling() ;
+        if (KingSideCastling() == true)
+        {
+            AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
+            return true ;
+        }
     }
     else if ((tar_x - cur_x == -2) && (tar_y - cur_y == 0)) // QueenSide Castling.
     {
-        return QueenSideCastling() ;
+        if (QueenSideCastling() == true)
+        {
+            AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
+            return true ;  
+        }
     }
     return false ;
 }

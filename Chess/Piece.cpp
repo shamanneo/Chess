@@ -7,6 +7,11 @@ CPiece::CPiece(int x, int y, CChessBoard *chess_board, HWND hwnd)
 
 }
 
+CPiece::~CPiece()
+{
+
+}
+
 void CPiece::Draw(const int size, Gdiplus::Graphics *graphics, int x, int y)
 {
     return ;
@@ -16,17 +21,7 @@ bool CPiece::Move(int tar_x, int tar_y)
 {
     int cur_x = this->GetX() ; 
     int cur_y = this->GetY() ;
-    if (!this->CanMove(cur_x, cur_y, tar_x, tar_y))
-    {
-        return false ;
-    }
-    CPaintChessBoard pcb(m_hwnd) ;
-    pcb.DrawSmallRect(cur_x, cur_y) ; 
-    pcb.DrawSmallRect(tar_x, tar_y) ; 
-    pcb.DrawPiece(this, tar_x, tar_y) ; 
-    GetChessBoard()->SetPieces(this->GetX(), this->GetY(), tar_x, tar_y, *this) ;
-    this->SetXY(tar_x, tar_y) ;
-    return true ;
+    return this->CanMove(cur_x, cur_y, tar_x, tar_y) ; 
 }
 
 bool CPiece::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
@@ -64,4 +59,19 @@ void CPiece::SetXY(int x, int y)
 CChessBoard *CPiece::GetChessBoard() const
 {
     return m_chess_board ; 
+}
+
+HWND CPiece::Gethwnd() const
+{
+    return m_hwnd ; 
+}
+
+void CPiece::AfterMove(int cur_x, int cur_y, int tar_x, int tar_y, CPiece &piece)
+{
+    CPaintChessBoard pcb(m_hwnd) ;
+    pcb.DrawSmallRect(cur_x, cur_y) ;
+    pcb.DrawSmallRect(tar_x, tar_y) ;
+    pcb.DrawPiece(&piece, tar_x, tar_y) ;
+    GetChessBoard()->SetPieces(cur_x, cur_y, tar_x, tar_y, piece) ;
+    piece.SetXY(tar_x, tar_y) ;
 }

@@ -20,7 +20,12 @@ bool CBKnight::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     }
     int x = std::abs(this->GetX() - tar_x) ;
     int y = std::abs(this->GetY() - tar_y) ;
-    return (x * y == 2) ;
+    if (x * y == 2)
+    {
+        AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
+        return true ; 
+    }
+    return false ; 
 }
 
 inline int CBKnight::GetColor() const

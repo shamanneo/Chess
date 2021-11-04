@@ -25,6 +25,7 @@ bool CBPawn::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     {
         if ((x == 1 && y == -1) || (x == -1 && y == -1))
         {
+            AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
             return true ;
         }
         return false ;
@@ -32,6 +33,7 @@ bool CBPawn::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     else if (x == 0 && y == -1)
     {
         m_is_moved = true ;
+        AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
         return true ;
     }
     else if (x == 0 && y == -2 && m_is_moved == false)
@@ -42,6 +44,7 @@ bool CBPawn::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
             return false ;
         }
         m_is_moved = true ;
+        AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
         return true ;
     }
     return false ;
