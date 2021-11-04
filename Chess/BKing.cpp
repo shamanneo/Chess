@@ -74,6 +74,10 @@ bool CBKing::QueenSideCastling()
 {
     CPiece *piece = GetChessBoard()->GetPiece(0, 0) ;
     CBRook *queen_side_rook = dynamic_cast<CBRook *>(piece) ;
+    if (queen_side_rook == nullptr)
+    {
+        return false ; 
+    }
     if (!m_can_castle || queen_side_rook->CanCastling() == false)
     {
         return false ;
