@@ -7,6 +7,11 @@ CBRook::CBRook(int x, int y, CChessBoard *chess_board, HWND hwnd)
     m_can_castle = true ; 
 }
 
+CBRook::~CBRook()
+{
+    
+}
+
 void CBRook::Draw(const int size, Gdiplus::Graphics *graphics, int x, int y)
 {
     graphics->DrawImage(&m_img, x * size, y * size, size, size) ;

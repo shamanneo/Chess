@@ -7,6 +7,11 @@ CBBishop::CBBishop(int x, int y, CChessBoard *chess_board, HWND hwnd)
 
 }
 
+CBBishop::~CBBishop()
+{
+
+}
+
 void CBBishop::Draw(const int size, Gdiplus::Graphics *graphics, int x, int y)
 {
     graphics->DrawImage(&m_img, x * size, y * size, size, size) ;

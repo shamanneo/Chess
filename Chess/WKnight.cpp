@@ -7,6 +7,11 @@ CWKnight::CWKnight(int x, int y, CChessBoard *chess_board, HWND hwnd)
     
 }
 
+CWKnight::~CWKnight()
+{
+
+}
+
 void CWKnight::Draw(const int size, Gdiplus::Graphics *graphics, int x, int y)
 {
     graphics->DrawImage(&m_img, x * size, y * size, size, size) ;

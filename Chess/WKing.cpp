@@ -8,6 +8,11 @@ CWKing::CWKing(int x, int y, CChessBoard *chess_board, HWND hwnd)
     m_can_castle = true;
 }
 
+CWKing::~CWKing()
+{
+
+}
+
 void CWKing::Draw(const int size, Gdiplus::Graphics *graphics, int x, int y)
 {
     graphics->DrawImage(&m_img, x * size, y * size, size, size);

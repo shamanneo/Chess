@@ -18,6 +18,8 @@ BOOL                InitInstance(HINSTANCE, int) ;
 LRESULT CALLBACK    MainWndProc(HWND, UINT, WPARAM, LPARAM) ;
 LRESULT CALLBACK    ChessBoardWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) ; 
 
+CChessBoardWindow *lcb_wnd ; 
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -51,6 +53,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             DispatchMessage(&msg) ;
         }
     }
+    delete lcb_wnd ; 
     _CrtDumpMemoryLeaks() ;
     Gdiplus::GdiplusShutdown(gdiplustoken) ; 
     return (int) msg.wParam ;
@@ -102,24 +105,21 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    const DWORD wsStyle = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX ;
    HWND main_hwnd = CreateWindowW(szWindowClass, szTitle, wsStyle, 0, 0, 496, 539, nullptr, nullptr, hInstance, nullptr) ;
    HWND chess_board_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, 480, 480, main_hwnd, nullptr, hInstance, nullptr) ; 
-   CChessBoardWindow *cb_wnd = new CChessBoardWindow(chess_board_hwnd) ;
-   SetWindowLongPtr(chess_board_hwnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(cb_wnd)) ;
-
    ShowWindow(main_hwnd, nCmdShow) ;
    UpdateWindow(main_hwnd) ;
-
-   return TRUE;
+   return TRUE ;
 }
 
-LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK MainWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     CMainWindow main_wnd ; 
-    return main_wnd.WndProc(hWnd, message, wParam, lParam) ; 
+    return main_wnd.WndProc(hwnd, message, wParam, lParam) ; 
 }
 
 LRESULT CALLBACK ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    CChessBoardWindow *cb_wnd = reinterpret_cast<CChessBoardWindow *>(GetWindowLongPtr(hwnd, GWLP_USERDATA)) ;
+    static CChessBoardWindow *cb_wnd = new CChessBoardWindow(hwnd) ; 
+    lcb_wnd = cb_wnd ; 
     return cb_wnd->ChessBoardWndProc(hwnd, message, wParam, lParam) ; 
 }
 

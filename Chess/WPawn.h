@@ -9,6 +9,7 @@ class CWPawn : public CPiece
         Gdiplus::Image m_img ;
     public :
         CWPawn(int x, int y, CChessBoard *chess_board, HWND hwnd) ; 
+        ~CWPawn() ; 
         virtual void Draw(const int size, Gdiplus::Graphics *graphics, int x, int y) override ; 
         virtual bool CanMove(int cur_x, int cur_y, int tar_x, int tar_y) override ;
         inline virtual int GetColor() const ;
