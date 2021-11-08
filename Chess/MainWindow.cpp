@@ -54,7 +54,7 @@ void CMainWindow::OnPaint(HWND hwnd)
     HDC hdc = BeginPaint(hwnd, &ps) ;
     Gdiplus::Graphics gp(hwnd) ;
     Gdiplus::Pen pen(Gdiplus::Color(255, 65, 65, 65)) ;
-    gp.DrawRectangle(&pen, 0, 0, 600, 549) ;
+    gp.DrawRectangle(&pen, 0, 0, 728, 539) ;
     EndPaint(hwnd, &ps) ;
 }
 

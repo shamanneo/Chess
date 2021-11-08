@@ -101,13 +101,16 @@ ATOM MyRegisterChessBoardClass(HINSTANCE hInstance)
 
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance ; 
-   const DWORD wsStyle = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX ;
-   HWND main_hwnd = CreateWindowW(szWindowClass, szTitle, wsStyle, 0, 0, 496, 539, nullptr, nullptr, hInstance, nullptr) ;
-   HWND chess_board_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE | WS_BORDER, 0, 0, 480, 480, main_hwnd, nullptr, hInstance, nullptr) ; 
-   ShowWindow(main_hwnd, nCmdShow) ;
-   UpdateWindow(main_hwnd) ;
-   return TRUE ;
+    hInst = hInstance ;
+    const DWORD wsStyle = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX ; 
+    HWND main_hwnd = CreateWindowW(szWindowClass, szTitle, wsStyle, 0, 0, 728, 539, nullptr, nullptr, hInstance, nullptr) ; // 496, 539 ; 
+    HWND chess_board_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE , 0, 0, 728, 539, main_hwnd, nullptr, hInstance, nullptr) ;
+    HWND reset_button_hwnd = CreateWindowW(_T("Button"), _T("Reset"), WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 525, 425, 100, 40, chess_board_hwnd, HMENU(2001), hInstance, nullptr) ; 
+    CChessBoardWindow *cb_wnd = new CChessBoardWindow(chess_board_hwnd) ;
+    lcb_wnd = cb_wnd ;
+    ShowWindow(main_hwnd, nCmdShow) ;
+    UpdateWindow(main_hwnd) ;
+    return TRUE ;
 }
 
 LRESULT CALLBACK MainWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -118,9 +121,7 @@ LRESULT CALLBACK MainWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPar
 
 LRESULT CALLBACK ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    static CChessBoardWindow *cb_wnd = new CChessBoardWindow(hwnd) ; 
-    lcb_wnd = cb_wnd ; 
-    return cb_wnd->ChessBoardWndProc(hwnd, message, wParam, lParam) ; 
+    return lcb_wnd->ChessBoardWndProc(hwnd, message, wParam, lParam) ; 
 }
 
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)

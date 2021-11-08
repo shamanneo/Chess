@@ -2,6 +2,7 @@
 #include "resource.h"
 #include <objidl.h> 
 #include <gdiplus.h>
+#include "ChessBoardWindow.h"
 
 class CMainWindow
 { 
