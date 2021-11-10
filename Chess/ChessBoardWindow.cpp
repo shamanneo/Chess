@@ -1,4 +1,5 @@
 #include "ChessBoardWindow.h"
+#include "resource.h"
 
 extern CChessBoardWindow *lcb_wnd ;
 
@@ -60,7 +61,7 @@ void CChessBoardWindow::OnCommand(HWND hwnd, WPARAM wParam)
     int wmId = LOWORD(wParam) ;
     switch (wmId)
     {
-        case 2001: // Reset Button Down. 
+        case IDC_RESET: // Reset Button Down. 
         {
             Reset(hwnd) ; 
             break ;
