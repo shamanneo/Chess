@@ -35,7 +35,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING) ;
     LoadStringW(hInstance, IDC_CHESS, szWindowClass, MAX_LOADSTRING) ;
 
-    MyRegisterClass(hInstance);
+    MyRegisterClass(hInstance) ;
     MyRegisterChessBoardClass(hInstance) ; 
 
     if (!InitInstance (hInstance, nCmdShow))
@@ -105,7 +105,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     const DWORD wsStyle = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX ; 
     HWND main_hwnd = CreateWindowW(szWindowClass, szTitle, wsStyle, 0, 0, 728, 539, nullptr, nullptr, hInstance, nullptr) ; // 496, 539 ; 
     HWND chess_board_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE , 0, 0, 728, 539, main_hwnd, nullptr, hInstance, nullptr) ;
-    HWND reset_button_hwnd = CreateWindowW(_T("Button"), _T("Reset"), WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 525, 425, 100, 40, chess_board_hwnd, HMENU(IDC_RESET), hInstance, nullptr) ; 
+    HWND reset_button_hwnd = CreateWindowW(_T("Button"), _T("Reset"), WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 540, 425, 100, 40, chess_board_hwnd, HMENU(IDC_RESET), hInstance, nullptr) ; 
     CChessBoardWindow *cb_wnd = new CChessBoardWindow(chess_board_hwnd) ;
     lcb_wnd = cb_wnd ;
     ShowWindow(main_hwnd, nCmdShow) ;
