@@ -16,3 +16,8 @@ class CBRook : public CPiece
         bool CanCastling() const ;
 } ;
 
+inline int CBRook::GetColor() const
+{
+    return m_color ;
+}
+

@@ -27,3 +27,19 @@ class CPiece
 } ;
 
 
+inline int CPiece::GetColor() const
+{
+    return 0 ;
+}
+
+inline int CPiece::GetX() const
+{
+    return m_x ;
+}
+
+inline int CPiece::GetY() const
+{
+    return m_y ;
+}
+
+

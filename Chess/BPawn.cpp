@@ -66,11 +66,6 @@ bool CBPawn::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     return false ;
 }
 
-inline int CBPawn::GetColor() const
-{
-    return m_color ;
-}
-
 void CBPawn::Promotion(int cur_x, int cur_y, int tar_x, int tar_y)
 {
     CChessBoard* cb = GetChessBoard() ;

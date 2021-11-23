@@ -14,3 +14,7 @@ class CWKnight : public CPiece
         inline virtual int GetColor() const ; 
 } ;
 
+inline int CWKnight::GetColor() const
+{
+    return m_color ;
+}

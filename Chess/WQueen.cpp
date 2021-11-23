@@ -78,8 +78,3 @@ bool CWQueen::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     }
     return false ;
 }
-
-inline int CWQueen::GetColor() const
-{
-    return m_color ;
-}

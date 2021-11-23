@@ -14,6 +14,10 @@ class CWBishop : public CPiece
         inline virtual int GetColor() const ; 
 } ;
 
+inline int CWBishop::GetColor() const
+{
+    return m_color ; 
+}
 
 
 

@@ -18,4 +18,7 @@ class CWKing : public CPiece
         bool IsCheckMated() ; 
 } ;
 
-
+inline int CWKing::GetColor() const
+{
+    return m_color ;
+}

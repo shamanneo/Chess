@@ -66,11 +66,6 @@ bool CWPawn::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     return false ;
 }
 
-inline int CWPawn::GetColor() const
-{
-    return m_color ;
-}
-
 void CWPawn::Promotion(int cur_x, int cur_y, int tar_x, int tar_y) 
 {
     CChessBoard *cb = GetChessBoard() ; 

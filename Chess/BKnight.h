@@ -13,3 +13,8 @@ class CBKnight : public CPiece
         virtual bool CanMove(int cur_x, int cur_y, int tar_x, int tar_y) override ;
         inline virtual int GetColor() const ; 
 } ;
+
+inline int CBKnight::GetColor() const
+{
+    return m_color ;
+}

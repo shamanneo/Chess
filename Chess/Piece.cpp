@@ -35,21 +35,6 @@ bool CPiece::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     return (cur->GetColor() != tar->GetColor()) ; 
 }
 
-inline int CPiece::GetColor() const
-{
-    return 0 ;
-}
-
-inline int CPiece::GetX() const
-{
-    return m_x ;
-}
-
-inline int CPiece::GetY() const
-{
-    return m_y ;
-}
-
 void CPiece::SetXY(int x, int y)
 {
     m_x = x ;

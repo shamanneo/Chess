@@ -51,11 +51,6 @@ bool CWKing::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     return false ; 
 }
 
-inline int CWKing::GetColor() const
-{
-    return m_color ;
-}
-
 bool CWKing::KingSideCastling()
 {
     CPiece *piece = GetChessBoard()->GetPiece(7, 7) ;

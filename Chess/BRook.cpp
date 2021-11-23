@@ -56,10 +56,6 @@ bool CBRook::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     return true ; 
 }
 
-inline int CBRook::GetColor() const
-{
-    return m_color ;
-}
 bool CBRook::CanCastling() const
 {
     return m_can_castle ;

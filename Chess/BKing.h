@@ -17,3 +17,8 @@ class CBKing : public CPiece
         bool QueenSideCastling() ;
         bool IsCheckMated() ;
 } ; 
+
+inline int CBKing::GetColor() const
+{
+    return m_color ;
+}

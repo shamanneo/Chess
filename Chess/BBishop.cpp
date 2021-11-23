@@ -55,7 +55,3 @@ bool CBBishop::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     return true ;
 }
 
-inline int CBBishop::GetColor() const
-{
-    return m_color ;
-}

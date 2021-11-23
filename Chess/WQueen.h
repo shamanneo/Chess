@@ -14,3 +14,8 @@ class CWQueen : public CPiece
         inline virtual int GetColor() const ; 
 } ;
 
+inline int CWQueen::GetColor() const
+{
+    return m_color ;
+}
+

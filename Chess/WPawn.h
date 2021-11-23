@@ -15,3 +15,8 @@ class CWPawn : public CPiece
         inline virtual int GetColor() const ;
         void Promotion(int cur_x, int cur_y, int tar_x, int tar_y) ; 
 } ; 
+
+inline int CWPawn::GetColor() const
+{
+    return m_color ;
+}

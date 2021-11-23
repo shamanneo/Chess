@@ -79,7 +79,3 @@ bool CBQueen::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     return false ;
 }
 
-inline int CBQueen::GetColor() const
-{
-    return m_color ;
-}
