@@ -19,27 +19,27 @@ LRESULT CChessBoardWindow::ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wPa
 {
     switch (message)
     {
-        case WM_COMMAND:
+        case WM_COMMAND :
         {
             OnCommand(hwnd, wParam) ;
             break ; 
         }
-        case WM_PAINT:
+        case WM_PAINT :
         {
             OnPaint(hwnd) ; 
             break ;
         }
-        case WM_LBUTTONDOWN:
+        case WM_LBUTTONDOWN :
         {
             OnLButtonDown(hwnd, lParam) ; 
             break ;
         }
-        case WM_DESTROY:
+        case WM_DESTROY :
         {
             OnDestory() ; 
             break ;
         }
-        default:
+        default :
         {
             return DefWindowProc(hwnd, message, wParam, lParam) ;
         }
@@ -61,9 +61,13 @@ void CChessBoardWindow::OnCommand(HWND hwnd, WPARAM wParam)
     int wmId = LOWORD(wParam) ;
     switch (wmId)
     {
-        case IDC_RESET: // Reset Button Down. 
+        case IDC_RESET : // Reset Button Down. 
         {
             Reset(hwnd) ; 
+            break ;
+        }
+        case IDC_UNDO : // Reset Button Down. 
+        {
             break ;
         }
     }
@@ -82,7 +86,7 @@ void CChessBoardWindow::OnLButtonDown(HWND hwnd, LPARAM lParam)
 {
     int x = GET_X_LPARAM(lParam) / 60 ;
     int y = GET_Y_LPARAM(lParam) / 60 ;
-    if (x > 7)
+    if (x > 7 || y > 7)
     {
         return ; 
     }

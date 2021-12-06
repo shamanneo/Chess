@@ -50,12 +50,7 @@ void CMainWindow::OnComamnd(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 
 void CMainWindow::OnPaint(HWND hwnd)
 {
-    PAINTSTRUCT ps ;
-    HDC hdc = BeginPaint(hwnd, &ps) ;
-    Gdiplus::Graphics gp(hwnd) ;
-    Gdiplus::Pen pen(Gdiplus::Color(255, 65, 65, 65)) ;
-    gp.DrawRectangle(&pen, 0, 0, 728, 539) ;
-    EndPaint(hwnd, &ps) ;
+
 }
 
 void CMainWindow::OnDestory()
