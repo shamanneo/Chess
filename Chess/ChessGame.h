@@ -18,6 +18,7 @@ class CChessGame
     public :
         CChessGame(CChessBoard *chess_board, HWND hwnd) ; 
         ~CChessGame() ; 
+    public :
         bool WhiteSelect(int x, int y) ;
         bool WhiteMove(int x, int y) ;
         bool BlackSelect(int x, int y) ;
@@ -27,7 +28,7 @@ class CChessGame
         CState *GetBlackTurnState() ;
         CState *GetBlackReadyState() ;
         void SetState(CState *state) ; 
-        void GameState(int x, int y) ; 
+        bool GameState(int x, int y) ; 
         CPiece *GetPrevPiece() const ; 
         void SetPrevPiece(CPiece *piece) ;
 } ;

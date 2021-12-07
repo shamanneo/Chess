@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include <stack>
 #include <windowsx.h>
 #include "ChessBoard.h"
@@ -9,7 +10,7 @@ class CChessBoardWindow
     private :
         CChessBoard *m_cb ;
         CChessGame *m_cg ; 
-        std::stack<int *> m_arr_stack ; 
+        typename std::stack<std::shared_ptr<int>> m_arr_stack ; 
     protected :
         void OnCommand(HWND hwnd, WPARAM wParam) ;
         void OnPaint(HWND hwnd) ; 
@@ -18,7 +19,9 @@ class CChessBoardWindow
     public :
         CChessBoardWindow(HWND hwnd) ; 
         ~CChessBoardWindow() ;
+    public :
         LRESULT ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) ;
+        void Save() ; 
         void Reset(HWND hwnd) ;
         void Undo(HWND hwnd) ;
 } ;

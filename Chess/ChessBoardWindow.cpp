@@ -47,6 +47,23 @@ LRESULT CChessBoardWindow::ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wPa
     return 0 ;
 }
 
+void CChessBoardWindow::Save()
+{
+    std::shared_ptr<int> pieces(new int[64], std::default_delete<int []>()) ; 
+    for(int x = 0 ; x < 8 ; x++)
+    {
+        for(int y = 0 ; y < 8 ; y++)
+        {
+            CPiece *piece = m_cb->GetPiece(x, y) ; 
+            if(piece != nullptr)
+            {
+                *(pieces.get() + ((y * 8) + x)) = piece->GetID() ; 
+            }
+        }
+    }
+    m_arr_stack.push(pieces) ; 
+}
+
 void CChessBoardWindow::Reset(HWND hwnd)
 {
     delete this ; 
@@ -58,6 +75,7 @@ void CChessBoardWindow::Reset(HWND hwnd)
 
 void CChessBoardWindow::Undo(HWND hwnd) 
 {
+    
 
 
 }
@@ -97,7 +115,10 @@ void CChessBoardWindow::OnLButtonDown(HWND hwnd, LPARAM lParam)
     {
         return ; 
     }
-    m_cg->GameState(x, y) ;
+    if(m_cg->GameState(x, y))
+    {
+        Save() ; 
+    }
 }
 
 void CChessBoardWindow::OnDestory()
