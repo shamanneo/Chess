@@ -3,25 +3,25 @@
 #include <objidl.h> 
 #include <gdiplus.h>
 
+enum 
+{
+    WHITEPAWN = 90,
+    WHITEROOK,
+    WHITEKNIGHT,
+    WHITEBISHOP,
+    WHITEQUEEN,
+    WHITEKING,
+    BLACKPAWN,
+    BLACKROOK,
+    BLACKKNIGHT,
+    BLACKBISHOP,
+    BLACKQUEEN,
+    BLACKKING
+} ; 
+
 class CChessBoard ; 
 class CPiece
 {
-    public :
-        enum 
-        {
-            WHITEPAWN = 90,
-            WHITEROOK,
-            WHITEKNIGHT,
-            WHITEBISHOP,
-            WHITEQUEEN,
-            WHITEKING,
-            BLACKPAWN,
-            BLACKROOK,
-            BLACKKNIGHT,
-            BLACKBISHOP,
-            BLACKQUEEN,
-            BLACKKING
-        } ; 
     private : 
         int m_x ; 
         int m_y ; 

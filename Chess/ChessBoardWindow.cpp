@@ -7,6 +7,7 @@ CChessBoardWindow::CChessBoardWindow(HWND hwnd)
 {
     m_cb = new CChessBoard(hwnd) ; 
     m_cg = new CChessGame(m_cb, hwnd) ;
+    Save() ; 
 }
 
 CChessBoardWindow::~CChessBoardWindow()
@@ -57,7 +58,7 @@ void CChessBoardWindow::Save()
             CPiece *piece = m_cb->GetPiece(x, y) ; 
             if(piece != nullptr)
             {
-                *(pieces.get() + ((y * 8) + x)) = piece->GetID() ; 
+                *(pieces.get() + y * 8 + x) = piece->GetID() ; 
             }
         }
     }
@@ -75,9 +76,26 @@ void CChessBoardWindow::Reset(HWND hwnd)
 
 void CChessBoardWindow::Undo(HWND hwnd) 
 {
-    
-
-
+    size_t count = m_arr_stack.size() ; 
+    if(count == 1)
+    {
+        return ;
+    }
+    else if((count % 2) == 0)
+    {
+        m_cg->SetState(m_cg->GetWhiteTurnState()) ; 
+    }
+    else if((count % 2) == 1)
+    {
+        m_cg->SetState(m_cg->GetBlackTurnState()) ; 
+    }
+    m_arr_stack.pop() ; 
+    int *arr = m_arr_stack.top().get() ; 
+    delete m_cb ; 
+    m_cb = new CChessBoard ; 
+    m_cb->CopyArrToBoard(arr, hwnd) ; 
+    InvalidateRect(hwnd, nullptr, TRUE) ; 
+    UpdateWindow(hwnd) ; 
 }
 
 void CChessBoardWindow::OnCommand(HWND hwnd, WPARAM wParam)

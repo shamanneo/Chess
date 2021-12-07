@@ -71,6 +71,86 @@ void CChessBoard::Reset(HWND hwnd)
     m_chess_board[7][6] = new CWPawn(7, 6, this, hwnd) ;
 }
 
+void CChessBoard::CopyArrToBoard(int arr[], HWND hwnd)
+{
+    for(int x = 0 ; x < 8 ; x++)
+    {
+        for(int y = 0 ; y < 8 ; y++)
+        {
+            int piece_id = *(arr + y * 8 + x) ; 
+            switch (piece_id)
+            {
+                case WHITEPAWN :
+                {
+                    m_chess_board[x][y] = new CWPawn(x, y, this, hwnd) ;
+                    break ; 
+                }
+                case WHITEROOK :
+                {
+                    m_chess_board[x][y] = new CWRook(x, y, this, hwnd) ;
+                    break ; 
+                }
+                case WHITEKNIGHT :
+                {
+                    m_chess_board[x][y] = new CWKnight(x, y, this, hwnd) ;
+                    break ; 
+                }
+                case WHITEBISHOP :
+                {
+                    m_chess_board[x][y] = new CWBishop(x, y, this, hwnd) ;
+                    break ; 
+                }
+                case WHITEQUEEN :
+                {
+                    m_chess_board[x][y] = new CWQueen(x, y, this, hwnd) ;
+                    break ; 
+                }
+                case WHITEKING :
+                {
+                    m_chess_board[x][y] = new CWKing(x, y, this, hwnd) ;
+                    break ; 
+                }
+                case BLACKPAWN :
+                {
+                    m_chess_board[x][y] = new CBPawn(x, y, this, hwnd) ;
+                    break ;
+                }
+                case BLACKROOK :
+                {
+                    m_chess_board[x][y] = new CBRook(x, y, this, hwnd) ;
+                    break ; 
+                }
+                case BLACKKNIGHT :
+                {
+                    m_chess_board[x][y] = new CBKnight(x, y, this, hwnd) ;
+                    break ; 
+                }
+                case BLACKBISHOP :
+                {
+                    m_chess_board[x][y] = new CBBishop(x, y, this, hwnd) ;
+                    break ; 
+                }
+                case BLACKQUEEN :
+                {
+                    m_chess_board[x][y] = new CBQueen(x, y, this, hwnd) ;
+                    break ; 
+                }
+                case BLACKKING :
+                {
+                    m_chess_board[x][y] = new CBKing(x, y, this, hwnd) ;
+                    break ; 
+                }
+                default :
+                {
+                    m_chess_board[x][y] = nullptr ; 
+                    break ; 
+                }
+            }
+        }
+    }
+}
+
+
 void CChessBoard::SetPieces(int cur_x, int cur_y, int tar_x, int tar_y, CPiece &piece)
 {
     if (m_chess_board[tar_x][tar_y] == nullptr) // just move.
