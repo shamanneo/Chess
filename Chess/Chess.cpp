@@ -103,10 +103,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
     hInst = hInstance ;
     const DWORD wsStyle = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_THICKFRAME ; 
-    HWND main_hwnd = CreateWindowW(szWindowClass, szTitle, wsStyle, 0, 0, 496, 595, nullptr, nullptr, hInstance, nullptr) ;  
-    HWND chess_board_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE , 0, 0, 496, 595, main_hwnd, nullptr, hInstance, nullptr) ; 
-    HWND reset_button_hwnd = CreateWindowW(_T("Button"), _T("Reset"), WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 10, 490, 100, 35, chess_board_hwnd, HMENU(IDC_RESET), hInstance, nullptr) ; 
-    HWND undo_button_hwnd = CreateWindowW(_T("Button"), _T("Undo"), WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 130, 490, 100, 35, chess_board_hwnd, HMENU(IDC_UNDO), hInstance, nullptr) ; 
+    HWND main_hwnd = CreateWindowW(szWindowClass, szTitle, wsStyle, 0, 0, 496, 590, nullptr, nullptr, hInstance, nullptr) ;  
+    HWND chess_board_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE , 0, 0, 496, 590, main_hwnd, nullptr, hInstance, nullptr) ; 
+    HWND reset_button_hwnd = CreateWindowW(_T("Button"), _T("Reset"), WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 10, 490, 100, 30, chess_board_hwnd, HMENU(IDC_RESET), hInstance, nullptr) ; 
+    HWND undo_button_hwnd = CreateWindowW(_T("Button"), _T("Undo"), WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 130, 490, 100, 30, chess_board_hwnd, HMENU(IDC_UNDO), hInstance, nullptr) ; 
     CChessBoardWindow *cb_wnd = new CChessBoardWindow(chess_board_hwnd) ;
     lcb_wnd = cb_wnd ;
     ShowWindow(main_hwnd, nCmdShow) ;
@@ -127,7 +127,7 @@ LRESULT CALLBACK ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARA
 
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    UNREFERENCED_PARAMETER(lParam);
+    UNREFERENCED_PARAMETER(lParam) ;
     switch (message)
     {
         case WM_INITDIALOG :

@@ -56,6 +56,12 @@ void CChessBoardWindow::Reset(HWND hwnd)
     UpdateWindow(hwnd) ; 
 }
 
+void CChessBoardWindow::Undo(HWND hwnd) 
+{
+
+
+}
+
 void CChessBoardWindow::OnCommand(HWND hwnd, WPARAM wParam)
 {
     int wmId = LOWORD(wParam) ;
@@ -68,6 +74,7 @@ void CChessBoardWindow::OnCommand(HWND hwnd, WPARAM wParam)
         }
         case IDC_UNDO : // Reset Button Down. 
         {
+            Undo(hwnd) ;
             break ;
         }
     }

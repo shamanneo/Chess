@@ -5,6 +5,7 @@ class CWPawn : public CPiece
     private :
         const WCHAR *m_imgfile_name = L"white_pawn.png" ; 
         const int m_color = 1 ;
+        const int m_id = WHITEPAWN ; 
         bool m_is_moved ; 
         Gdiplus::Image m_img ;
     public :
@@ -13,10 +14,16 @@ class CWPawn : public CPiece
         virtual void Draw(const int size, Gdiplus::Graphics *graphics, int x, int y) override ; 
         virtual bool CanMove(int cur_x, int cur_y, int tar_x, int tar_y) override ;
         inline virtual int GetColor() const ;
+        inline virtual int GetID() const ; 
         void Promotion(int cur_x, int cur_y, int tar_x, int tar_y) ; 
 } ; 
 
 inline int CWPawn::GetColor() const
 {
     return m_color ;
+}
+
+inline int CWPawn::GetID() const
+{
+    return m_id ;
 }
