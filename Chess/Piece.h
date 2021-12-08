@@ -1,5 +1,4 @@
 #pragma once
-#include "resource.h"
 #include <cmath> 
 #include <objidl.h> 
 #include <gdiplus.h>

@@ -62,11 +62,11 @@ void CPiece::AfterMove(int cur_x, int cur_y, int tar_x, int tar_y, CPiece &cur_p
     CPiece *piece = m_chess_board->GetPiece(tar_x, tar_y) ; 
     if(dynamic_cast<CWKing *>(piece)) // Gameover. Black player win!
     {
-        DialogBox(NULL, MAKEINTRESOURCE(IDD_BLACKWIN), m_hwnd, nullptr) ;    
+        MessageBox(m_hwnd, L"Black Player Is Winner!!", L"GameOver", MB_OK) ; 
     }
     if(dynamic_cast<CBKing *>(piece)) // Gameover. White player win!
     {
-        DialogBox(NULL, MAKEINTRESOURCE(IDD_WHITEWIN), m_hwnd, nullptr) ;    
+        MessageBox(m_hwnd, L"White Player Is Winner!!", L"GameOver", MB_OK) ; 
     }
     GetChessBoard()->SetPieces(cur_x, cur_y, tar_x, tar_y, cur_piece) ;
     cur_piece.SetXY(tar_x, tar_y) ;
