@@ -1,4 +1,5 @@
 #pragma once
+#include "resource.h"
 #include <cmath> 
 #include <objidl.h> 
 #include <gdiplus.h>
@@ -41,7 +42,7 @@ class CPiece
         void SetXY(int x, int y) ; 
         CChessBoard *GetChessBoard() const ; 
         HWND Gethwnd() const ; 
-        void AfterMove(int cur_x, int cur_y, int tar_x, int tar_y, CPiece &piece) ;
+        void AfterMove(int cur_x, int cur_y, int tar_x, int tar_y, CPiece &tar_piece) ;
 } ;
 
 inline int CPiece::GetColor() const
