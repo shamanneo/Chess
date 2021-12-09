@@ -26,5 +26,6 @@ class CChessBoardWindow
         void Reset(HWND hwnd) ;
         void Undo(HWND hwnd) ;
         void Change(HWND hwnd) ;
+        void StackClear() ; 
 } ;
 
