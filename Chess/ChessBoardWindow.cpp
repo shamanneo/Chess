@@ -3,11 +3,12 @@
 
 extern CChessBoardWindow *lcb_wnd ;
 
-CChessBoardWindow::CChessBoardWindow(HWND hwnd)
+CChessBoardWindow::CChessBoardWindow(HWND hwnd, bool is_white)
 {
-    m_cb = new CChessBoard(hwnd) ; 
+    m_cb = new CChessBoard(hwnd, is_white) ; 
     m_cg = new CChessGame(m_cb, hwnd) ;
     Save() ; 
+    m_is_white_player = true ; 
 }
 
 CChessBoardWindow::~CChessBoardWindow()
@@ -68,7 +69,7 @@ void CChessBoardWindow::Save()
 void CChessBoardWindow::Reset(HWND hwnd)
 {
     delete this ; 
-    CChessBoardWindow *cb_wnd = new CChessBoardWindow(hwnd) ;
+    CChessBoardWindow *cb_wnd = new CChessBoardWindow(hwnd, m_is_white_player) ;
     lcb_wnd = cb_wnd ; 
     InvalidateRect(hwnd, nullptr, TRUE) ; 
     UpdateWindow(hwnd) ; 
@@ -83,10 +84,12 @@ void CChessBoardWindow::Undo(HWND hwnd)
     }
     else if((count % 2) == 0)
     {
+        m_cg->SetPrevPiece(nullptr) ; 
         m_cg->SetState(m_cg->GetWhiteTurnState()) ; 
     }
     else if((count % 2) == 1)
     {
+        m_cg->SetPrevPiece(nullptr) ; 
         m_cg->SetState(m_cg->GetBlackTurnState()) ; 
     }
     m_arr_stack.pop() ; 
@@ -94,6 +97,22 @@ void CChessBoardWindow::Undo(HWND hwnd)
     delete m_cb ; 
     m_cb = new CChessBoard ; 
     m_cb->CopyArrToBoard(arr, hwnd) ; 
+    InvalidateRect(hwnd, nullptr, TRUE) ; 
+    UpdateWindow(hwnd) ; 
+}
+
+void CChessBoardWindow::Change(HWND hwnd) 
+{
+    if(m_is_white_player)
+    {
+        m_is_white_player = false ; 
+    }
+    else
+    {
+        m_is_white_player = true ;
+    }
+    delete m_cb ; 
+    m_cb = new CChessBoard(hwnd, m_is_white_player) ; 
     InvalidateRect(hwnd, nullptr, TRUE) ; 
     UpdateWindow(hwnd) ; 
 }
@@ -112,6 +131,11 @@ void CChessBoardWindow::OnCommand(HWND hwnd, WPARAM wParam)
         {
             Undo(hwnd) ;
             break ;
+        }
+        case IDC_CHANGE : // Change Button Down.
+        {
+            Change(hwnd) ;
+            break ; 
         }
     }
 }

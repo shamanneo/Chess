@@ -1,10 +1,85 @@
 #include "ChessBoard.h"
 #include "Header.h"
 
-CChessBoard::CChessBoard(HWND hwnd)
+CChessBoard::CChessBoard(HWND hwnd, bool is_white)
 {
     Clear() ; 
-    Reset(hwnd) ;
+    if(is_white)
+    {
+        m_chess_board[0][0] = new CBRook(0, 0, this, hwnd) ;
+        m_chess_board[1][0] = new CBKnight(1, 0, this, hwnd) ;
+        m_chess_board[2][0] = new CBBishop(2, 0, this, hwnd) ;
+        m_chess_board[3][0] = new CBQueen(3, 0, this, hwnd) ;
+        m_chess_board[4][0] = new CBKing(4, 0, this, hwnd) ;
+        m_chess_board[5][0] = new CBBishop(5, 0, this, hwnd) ;
+        m_chess_board[6][0] = new CBKnight(6, 0, this, hwnd) ;
+        m_chess_board[7][0] = new CBRook(7, 0, this, hwnd) ;
+
+        m_chess_board[0][1] = new CBPawn(0, 1, this, hwnd) ;
+        m_chess_board[1][1] = new CBPawn(1, 1, this, hwnd) ;
+        m_chess_board[2][1] = new CBPawn(2, 1, this, hwnd) ;
+        m_chess_board[3][1] = new CBPawn(3, 1, this, hwnd) ;
+        m_chess_board[4][1] = new CBPawn(4, 1, this, hwnd) ;
+        m_chess_board[5][1] = new CBPawn(5, 1, this, hwnd) ;
+        m_chess_board[6][1] = new CBPawn(6, 1, this, hwnd) ;
+        m_chess_board[7][1] = new CBPawn(7, 1, this, hwnd) ;
+
+        m_chess_board[0][7] = new CWRook(0, 7, this, hwnd) ;
+        m_chess_board[1][7] = new CWKnight(1, 7, this, hwnd) ;
+        m_chess_board[2][7] = new CWBishop(2, 7, this, hwnd) ;
+        m_chess_board[3][7] = new CWQueen(3, 7, this, hwnd) ;
+        m_chess_board[4][7] = new CWKing(4, 7, this, hwnd) ;
+        m_chess_board[5][7] = new CWBishop(5, 7, this, hwnd) ;
+        m_chess_board[6][7] = new CWKnight(6, 7, this, hwnd) ;
+        m_chess_board[7][7] = new CWRook(7, 7, this, hwnd) ;
+
+        m_chess_board[0][6] = new CWPawn(0, 6, this, hwnd) ;
+        m_chess_board[1][6] = new CWPawn(1, 6, this, hwnd) ;
+        m_chess_board[2][6] = new CWPawn(2, 6, this, hwnd) ;
+        m_chess_board[3][6] = new CWPawn(3, 6, this, hwnd) ;
+        m_chess_board[4][6] = new CWPawn(4, 6, this, hwnd) ;
+        m_chess_board[5][6] = new CWPawn(5, 6, this, hwnd) ;
+        m_chess_board[6][6] = new CWPawn(6, 6, this, hwnd) ;
+        m_chess_board[7][6] = new CWPawn(7, 6, this, hwnd) ;
+    }
+    else 
+    {
+        m_chess_board[0][0] = new CWRook(0, 0, this, hwnd) ;
+        m_chess_board[1][0] = new CWKnight(1, 0, this, hwnd) ;
+        m_chess_board[2][0] = new CWBishop(2, 0, this, hwnd) ;
+        m_chess_board[3][0] = new CWQueen(3, 0, this, hwnd) ;
+        m_chess_board[4][0] = new CWKing(4, 0, this, hwnd) ;
+        m_chess_board[5][0] = new CWBishop(5, 0, this, hwnd) ;
+        m_chess_board[6][0] = new CWKnight(6, 0, this, hwnd) ;
+        m_chess_board[7][0] = new CWRook(7, 0, this, hwnd) ;
+
+        m_chess_board[0][1] = new CWPawn(0, 1, this, hwnd) ;
+        m_chess_board[1][1] = new CWPawn(1, 1, this, hwnd) ;
+        m_chess_board[2][1] = new CWPawn(2, 1, this, hwnd) ;
+        m_chess_board[3][1] = new CWPawn(3, 1, this, hwnd) ;
+        m_chess_board[4][1] = new CWPawn(4, 1, this, hwnd) ;
+        m_chess_board[5][1] = new CWPawn(5, 1, this, hwnd) ;
+        m_chess_board[6][1] = new CWPawn(6, 1, this, hwnd) ;
+        m_chess_board[7][1] = new CWPawn(7, 1, this, hwnd) ;
+
+        m_chess_board[0][7] = new CBRook(0, 7, this, hwnd) ;
+        m_chess_board[1][7] = new CBKnight(1, 7, this, hwnd) ;
+        m_chess_board[2][7] = new CBBishop(2, 7, this, hwnd) ;
+        m_chess_board[3][7] = new CBQueen(3, 7, this, hwnd) ;
+        m_chess_board[4][7] = new CBKing(4, 7, this, hwnd) ;
+        m_chess_board[5][7] = new CBBishop(5, 7, this, hwnd) ;
+        m_chess_board[6][7] = new CBKnight(6, 7, this, hwnd) ;
+        m_chess_board[7][7] = new CBRook(7, 7, this, hwnd) ;
+
+        m_chess_board[0][6] = new CBPawn(0, 6, this, hwnd) ;
+        m_chess_board[1][6] = new CBPawn(1, 6, this, hwnd) ;
+        m_chess_board[2][6] = new CBPawn(2, 6, this, hwnd) ;
+        m_chess_board[3][6] = new CBPawn(3, 6, this, hwnd) ;
+        m_chess_board[4][6] = new CBPawn(4, 6, this, hwnd) ;
+        m_chess_board[5][6] = new CBPawn(5, 6, this, hwnd) ;
+        m_chess_board[6][6] = new CBPawn(6, 6, this, hwnd) ;
+        m_chess_board[7][6] = new CBPawn(7, 6, this, hwnd) ;
+    }
 }
 
 CChessBoard::~CChessBoard()
@@ -30,45 +105,6 @@ void CChessBoard::Clear()
             m_chess_board[x][y] = nullptr ;
         }
     }
-}
-
-void CChessBoard::Reset(HWND hwnd)
-{
-    m_chess_board[0][0] = new CBRook(0, 0, this, hwnd) ;
-    m_chess_board[1][0] = new CBKnight(1, 0, this, hwnd) ;
-    m_chess_board[2][0] = new CBBishop(2, 0, this, hwnd) ;
-    m_chess_board[3][0] = new CBQueen(3, 0, this, hwnd) ;
-    m_chess_board[4][0] = new CBKing(4, 0, this, hwnd) ;
-    m_chess_board[5][0] = new CBBishop(5, 0, this, hwnd) ;
-    m_chess_board[6][0] = new CBKnight(6, 0, this, hwnd) ;
-    m_chess_board[7][0] = new CBRook(7, 0, this, hwnd) ;
-
-    m_chess_board[0][1] = new CBPawn(0, 1, this, hwnd) ;
-    m_chess_board[1][1] = new CBPawn(1, 1, this, hwnd) ;
-    m_chess_board[2][1] = new CBPawn(2, 1, this, hwnd) ;
-    m_chess_board[3][1] = new CBPawn(3, 1, this, hwnd) ;
-    m_chess_board[4][1] = new CBPawn(4, 1, this, hwnd) ;
-    m_chess_board[5][1] = new CBPawn(5, 1, this, hwnd) ;
-    m_chess_board[6][1] = new CBPawn(6, 1, this, hwnd) ;
-    m_chess_board[7][1] = new CBPawn(7, 1, this, hwnd) ;
-
-    m_chess_board[0][7] = new CWRook(0, 7, this, hwnd) ;
-    m_chess_board[1][7] = new CWKnight(1, 7, this, hwnd) ;
-    m_chess_board[2][7] = new CWBishop(2, 7, this, hwnd) ;
-    m_chess_board[3][7] = new CWQueen(3, 7, this, hwnd) ;
-    m_chess_board[4][7] = new CWKing(4, 7, this, hwnd) ;
-    m_chess_board[5][7] = new CWBishop(5, 7, this, hwnd) ;
-    m_chess_board[6][7] = new CWKnight(6, 7, this, hwnd) ;
-    m_chess_board[7][7] = new CWRook(7, 7, this, hwnd) ;
-
-    m_chess_board[0][6] = new CWPawn(0, 6, this, hwnd) ;
-    m_chess_board[1][6] = new CWPawn(1, 6, this, hwnd) ;
-    m_chess_board[2][6] = new CWPawn(2, 6, this, hwnd) ;
-    m_chess_board[3][6] = new CWPawn(3, 6, this, hwnd) ;
-    m_chess_board[4][6] = new CWPawn(4, 6, this, hwnd) ;
-    m_chess_board[5][6] = new CWPawn(5, 6, this, hwnd) ;
-    m_chess_board[6][6] = new CWPawn(6, 6, this, hwnd) ;
-    m_chess_board[7][6] = new CWPawn(7, 6, this, hwnd) ;
 }
 
 void CChessBoard::CopyArrToBoard(int arr[], HWND hwnd)
