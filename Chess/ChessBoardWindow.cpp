@@ -84,14 +84,13 @@ void CChessBoardWindow::Undo(HWND hwnd)
     }
     else if((count % 2) == 0)
     {
-        m_cg->SetPrevPiece(nullptr) ; 
         m_cg->SetState(m_cg->GetWhiteTurnState()) ; 
     }
     else if((count % 2) == 1)
     {
-        m_cg->SetPrevPiece(nullptr) ; 
         m_cg->SetState(m_cg->GetBlackTurnState()) ; 
     }
+    m_cg->SetPrevPiece(nullptr) ; 
     m_arr_stack.pop() ; 
     int *arr = m_arr_stack.top().get() ; 
     delete m_cb ; 
