@@ -8,7 +8,6 @@ CChessBoardWindow::CChessBoardWindow(HWND hwnd, bool is_white)
     m_cb = new CChessBoard(hwnd, is_white) ; 
     m_cg = new CChessGame(m_cb, hwnd) ;
     Save() ; 
-    m_is_white_player = true ; 
 }
 
 CChessBoardWindow::~CChessBoardWindow()
@@ -66,10 +65,10 @@ void CChessBoardWindow::Save()
     m_arr_stack.push(pieces) ; 
 }
 
-void CChessBoardWindow::Reset(HWND hwnd, bool main_color)
+void CChessBoardWindow::Reset(HWND hwnd, bool my_color)
 {
     delete this ; 
-    CChessBoardWindow *cb_wnd = new CChessBoardWindow(hwnd, main_color) ;
+    CChessBoardWindow *cb_wnd = new CChessBoardWindow(hwnd, my_color) ;
     lcb_wnd = cb_wnd ; 
     InvalidateRect(hwnd, nullptr, TRUE) ; 
     UpdateWindow(hwnd) ; 
@@ -102,17 +101,18 @@ void CChessBoardWindow::Undo(HWND hwnd)
 
 void CChessBoardWindow::Change(HWND hwnd) 
 {
-    if(m_is_white_player)
+    static int turn = 0 ; 
+    if(turn % 2 == 0)
     {
         m_cg->SetState(m_cg->GetWhiteTurnState()) ; 
-        m_is_white_player = false ;
+        Reset(hwnd, false) ; 
     }
     else
     {
         m_cg->SetState(m_cg->GetBlackTurnState()) ; 
-        m_is_white_player = true ;
+        Reset(hwnd, true) ; 
     }
-    Reset(hwnd, m_is_white_player) ; 
+    turn++ ; 
 }
 
 void CChessBoardWindow::OnCommand(HWND hwnd, WPARAM wParam)

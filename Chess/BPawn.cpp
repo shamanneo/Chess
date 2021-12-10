@@ -2,10 +2,11 @@
 #include "ChessBoard.h"
 #include "BQueen.h"
 
-CBPawn::CBPawn(int x, int y, CChessBoard *chess_board, HWND hwnd)
+CBPawn::CBPawn(int x, int y, CChessBoard *chess_board, HWND hwnd, bool forward_direction)
     : CPiece(x, y, chess_board, hwnd), m_img(m_imgfile_name)
 {
     m_is_moved = false ;
+    m_forward_direction = forward_direction ; 
 }
 
 CBPawn::~CBPawn()
@@ -27,43 +28,37 @@ bool CBPawn::CanMove(int cur_x, int cur_y, int tar_x, int tar_y)
     int x = cur_x - tar_x ;
     int y = cur_y - tar_y ;
     CPiece *tar_piece = GetChessBoard()->GetPiece(tar_x, tar_y) ;
-    if (tar_piece != nullptr) // Attack.
+
+    if(m_forward_direction == true)
     {
-        if ((x == 1 && y == -1) || (x == -1 && y == -1))
+        CPiece *first_piece = GetChessBoard()->GetPiece(cur_x, cur_y - 1) ;
+        if(IsUpPromotion(x, y, tar_y) == true)
         {
-            if (tar_y == 7)
-            {
-                Promotion(cur_x, cur_y, tar_x, tar_y) ; // Promotion!!!
-                return true ; 
-            }
+            Promotion(cur_x, cur_y, tar_x, tar_y) ; 
+            return true ;             
+        }
+        if(Up(x, y, tar_piece, first_piece, m_is_moved) == true)
+        {
             AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
-            return true ;
+            return true ; 
         }
-        return false ;
+        return false ; 
     }
-    else if (x == 0 && y == -1) // General move.
+    else
     {
-        m_is_moved = true ;
-        if (tar_y == 7)
+        CPiece *first_piece = GetChessBoard()->GetPiece(cur_x, cur_y + 1) ;
+        if(IsDownPromotion(x, y, tar_y) == true)
         {
-            Promotion(cur_x, cur_y, tar_x, tar_y) ; // Promotion!!!
-            return true ;
+            Promotion(cur_x, cur_y, tar_x, tar_y) ; 
+            return true ; 
         }
-        AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
-        return true ;
-    }
-    else if (x == 0 && y == -2 && m_is_moved == false) // Move 2 spaces when first turn. 
-    {
-        CPiece *piece = GetChessBoard()->GetPiece(cur_x, cur_y + 1) ;
-        if (piece != nullptr)
+        if(Down(x, y, tar_piece, first_piece, m_is_moved) == true)
         {
-            return false ;
+            AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
+            return true ; 
         }
-        m_is_moved = true ;
-        AfterMove(cur_x, cur_y, tar_x, tar_y, *this) ;
-        return true ;
+        return false ; 
     }
-    return false ;
 }
 
 void CBPawn::Promotion(int cur_x, int cur_y, int tar_x, int tar_y)
