@@ -6,7 +6,6 @@
 
 #define MAX_LOADSTRING 100
 
-// Global Variables:
 HINSTANCE hInst ;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING] ;                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING] ;   
@@ -107,7 +106,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     HWND chess_board_hwnd = CreateWindowW(szChessBoardWindowClass, szTitle, WS_CHILD | WS_VISIBLE , 0, 0, 496, 590, main_hwnd, nullptr, hInstance, nullptr) ; 
     HWND reset_button_hwnd = CreateWindowW(_T("Button"), _T("Reset"), WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 10, 490, 100, 30, chess_board_hwnd, HMENU(IDC_RESET), hInstance, nullptr) ; 
     HWND undo_button_hwnd = CreateWindowW(_T("Button"), _T("Undo"), WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 130, 490, 100, 30, chess_board_hwnd, HMENU(IDC_UNDO), hInstance, nullptr) ; 
-    // HWND change_button_hwnd = CreateWindowW(_T("Button"), _T("Change"), WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 250, 490, 100, 30, chess_board_hwnd, HMENU(IDC_CHANGE), hInstance, nullptr) ; 
+    HWND change_button_hwnd = CreateWindowW(_T("Button"), _T("Change"), WS_CHILD | WS_VISIBLE | BS_DEFPUSHBUTTON, 250, 490, 100, 30, chess_board_hwnd, HMENU(IDC_CHANGE), hInstance, nullptr) ; 
     CChessBoardWindow *cb_wnd = new CChessBoardWindow(chess_board_hwnd) ;
     lcb_wnd = cb_wnd ;
     ShowWindow(main_hwnd, nCmdShow) ;

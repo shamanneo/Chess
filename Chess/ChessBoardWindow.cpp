@@ -66,10 +66,10 @@ void CChessBoardWindow::Save()
     m_arr_stack.push(pieces) ; 
 }
 
-void CChessBoardWindow::Reset(HWND hwnd)
+void CChessBoardWindow::Reset(HWND hwnd, bool main_color)
 {
     delete this ; 
-    CChessBoardWindow *cb_wnd = new CChessBoardWindow(hwnd, m_is_white_player) ;
+    CChessBoardWindow *cb_wnd = new CChessBoardWindow(hwnd, main_color) ;
     lcb_wnd = cb_wnd ; 
     InvalidateRect(hwnd, nullptr, TRUE) ; 
     UpdateWindow(hwnd) ; 
@@ -84,14 +84,13 @@ void CChessBoardWindow::Undo(HWND hwnd)
     }
     else if((count % 2) == 0)
     {
-        m_cg->SetPrevPiece(nullptr) ; 
         m_cg->SetState(m_cg->GetWhiteTurnState()) ; 
     }
     else if((count % 2) == 1)
     {
-        m_cg->SetPrevPiece(nullptr) ; 
         m_cg->SetState(m_cg->GetBlackTurnState()) ; 
     }
+    m_cg->SetPrevPiece(nullptr) ; 
     m_arr_stack.pop() ; 
     int *arr = m_arr_stack.top().get() ; 
     delete m_cb ; 
@@ -103,7 +102,6 @@ void CChessBoardWindow::Undo(HWND hwnd)
 
 void CChessBoardWindow::Change(HWND hwnd) 
 {
-    StackClear() ; 
     if(m_is_white_player)
     {
         m_cg->SetState(m_cg->GetWhiteTurnState()) ; 
@@ -114,19 +112,7 @@ void CChessBoardWindow::Change(HWND hwnd)
         m_cg->SetState(m_cg->GetBlackTurnState()) ; 
         m_is_white_player = true ;
     }
-    m_cg->SetPrevPiece(nullptr) ; 
-    delete m_cb ; 
-    m_cb = new CChessBoard(hwnd, m_is_white_player) ; 
-    InvalidateRect(hwnd, nullptr, TRUE) ; 
-    UpdateWindow(hwnd) ; 
-}
-
-void CChessBoardWindow::StackClear()
-{
-    while(m_arr_stack.empty() != 1)
-    {
-        m_arr_stack.pop() ; 
-    }
+    Reset(hwnd, m_is_white_player) ; 
 }
 
 void CChessBoardWindow::OnCommand(HWND hwnd, WPARAM wParam)

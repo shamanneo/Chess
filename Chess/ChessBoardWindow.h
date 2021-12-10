@@ -23,9 +23,8 @@ class CChessBoardWindow
     public :
         LRESULT ChessBoardWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) ;
         void Save() ; 
-        void Reset(HWND hwnd) ;
+        void Reset(HWND hwnd, bool main_color = true) ;
         void Undo(HWND hwnd) ;
         void Change(HWND hwnd) ;
-        void StackClear() ; 
 } ;
 
