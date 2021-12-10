@@ -28,8 +28,9 @@ class CChessGame
         CState *GetBlackTurnState() ;
         CState *GetBlackReadyState() ;
         void SetState(CState *state) ; 
-        bool GameState(int x, int y) ; 
+        void GameState(int x, int y) ; 
         CPiece *GetPrevPiece() const ; 
         void SetPrevPiece(CPiece *piece) ;
 } ;
+
 

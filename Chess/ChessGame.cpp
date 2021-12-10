@@ -63,25 +63,24 @@ void CChessGame::SetState(CState *state)
     m_state = state ; 
 }
 
-bool CChessGame::GameState(int x, int y)
+void CChessGame::GameState(int x, int y)
 {
     if (WhiteSelect(x, y))
     {
-        return false ; 
+        return ;
     }
     else if (WhiteMove(x, y))
     {
-        return true ; 
+        return ;
     }
     else if (BlackSelect(x, y))
     {
-        return false ; 
+        return ;
     }
     else if (BlackMove(x, y))
     {
-        return true ; 
+        return ;
     }
-    return false ; 
 }
 
 CPiece *CChessGame::GetPrevPiece() const 

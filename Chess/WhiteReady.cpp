@@ -1,6 +1,8 @@
 #include "WhiteReady.h"
 #include "ChessGame.h"
 
+extern CChessBoardWindow *lcb_wnd ;
+
 CWhiteReady::CWhiteReady(CChessGame *chess_game, CChessBoard *chess_board, HWND hwnd)
     : CState(chess_board, hwnd)
 {
@@ -30,6 +32,7 @@ bool CWhiteReady::WhiteMove(int x, int y)
     {
         m_chess_game->SetState(m_chess_game->GetBlackTurnState()) ; 
         m_chess_game->SetPrevPiece(nullptr) ;
+        lcb_wnd->Save() ; 
     }
     return true ;
 }

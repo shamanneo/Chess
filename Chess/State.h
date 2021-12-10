@@ -1,6 +1,5 @@
 #pragma once
 #include "Piece.h"
-#include "ChessBoard.h"
 
 class CState
 {
@@ -9,6 +8,7 @@ class CState
         HWND m_hwnd ;
     public :
         CState(CChessBoard *chess_board, HWND hwnd) ; 
+    public :
         virtual bool WhiteSelect(int x, int y) ;
         virtual bool WhiteMove(int x, int y) ;
         virtual bool BlackSelect(int x, int y) ;
