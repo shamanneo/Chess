@@ -1,28 +1,27 @@
 #include "MainWindow.h"
 
-extern HINSTANCE hInst ;
-INT_PTR CALLBACK About(HWND, UINT, WPARAM, LPARAM) ;
+extern CChessBoardWindow *lcb_wnd ;
 
 LRESULT CALLBACK CMainWindow::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-        case WM_COMMAND:
+        case WM_COMMAND :
         {
             OnComamnd(hwnd, message, wParam, lParam) ;
             break ;
         }
-        case WM_PAINT:
+        case WM_PAINT :
         {
             OnPaint(hwnd) ; 
             break ; 
         }
-        case WM_DESTROY:
+        case WM_DESTROY :
         {
             OnDestory() ; 
             break ;
         }
-        default:
+        default :
         {
             return DefWindowProc(hwnd, message, wParam, lParam) ;
         }
@@ -35,11 +34,6 @@ void CMainWindow::OnComamnd(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
     int wmId = LOWORD(wParam) ;
     switch (wmId)
     {
-        case IDM_ABOUT:
-        {
-            DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hwnd, About) ;
-            break ;
-        }
         case IDM_EXIT:
         {
             DestroyWindow(hwnd) ;
@@ -50,7 +44,9 @@ void CMainWindow::OnComamnd(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 
 void CMainWindow::OnPaint(HWND hwnd)
 {
-
+    PAINTSTRUCT ps ;
+    BeginPaint(hwnd, &ps) ; 
+    EndPaint(hwnd, &ps) ; 
 }
 
 void CMainWindow::OnDestory()

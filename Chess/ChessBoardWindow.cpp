@@ -140,7 +140,7 @@ void CChessBoardWindow::OnCommand(HWND hwnd, WPARAM wParam)
 
 void CChessBoardWindow::OnPaint(HWND hwnd)
 {
-    PAINTSTRUCT ps;
+    PAINTSTRUCT ps ;
     HDC hdc = BeginPaint(hwnd, &ps) ;
     CPaintChessBoard pcb(hwnd) ;
     pcb.DrawBoard(m_cb) ; 
