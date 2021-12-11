@@ -6,22 +6,22 @@ LRESULT CALLBACK CMainWindow::WndProc(HWND hwnd, UINT message, WPARAM wParam, LP
 {
     switch (message)
     {
-        case WM_COMMAND:
+        case WM_COMMAND :
         {
             OnComamnd(hwnd, message, wParam, lParam) ;
             break ;
         }
-        case WM_PAINT:
+        case WM_PAINT :
         {
             OnPaint(hwnd) ; 
             break ; 
         }
-        case WM_DESTROY:
+        case WM_DESTROY :
         {
             OnDestory() ; 
             break ;
         }
-        default:
+        default :
         {
             return DefWindowProc(hwnd, message, wParam, lParam) ;
         }
@@ -44,7 +44,9 @@ void CMainWindow::OnComamnd(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPara
 
 void CMainWindow::OnPaint(HWND hwnd)
 {
-    //lcb_wnd->ChessBoardWndProc(hwnd, WM_PAINT, 0, 0) ;
+    PAINTSTRUCT ps ;
+    BeginPaint(hwnd, &ps) ; 
+    EndPaint(hwnd, &ps) ; 
 }
 
 void CMainWindow::OnDestory()
